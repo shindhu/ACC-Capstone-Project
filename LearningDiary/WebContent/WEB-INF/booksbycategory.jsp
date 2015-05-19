@@ -18,16 +18,17 @@
 			<th>Notes</th>
 		</tr>
 		
-		<c:forEach items="${theBooksByCategory }" var="booksbycategory">
+		<%--<c:out value="${theBooksByCategory }"> </c:out> --%>
+		  <c:forEach items="${theBooksByCategory }" var="book"> 
 			<tr>	
-				<td>${booksbycategory.id }</td>
-				<td>${booksbycategory.category_name }</td>
-				<td><img src="${booksbycategory.image }" height=100 width=100 /></td>
-				<td>${booksbycategory.name }</td>
-				<td>${booksbycategory.book_format }</td>
-				<td>${booksbycategory.notes }</td>
+				<td>${book.id }</td>
+				<td><a href="category?id=${book.category_id}">${book.category_name }</a></td>
+				<td><img src="${book.image }" height=100 width=100 /></td>
+				<td>${book.name }</td>
+				<td>${book.book_format }</td>
+				<td>${book.notes }</td>
 			</tr>
-		</c:forEach>
+		</c:forEach> 
 			
 	</table>
 

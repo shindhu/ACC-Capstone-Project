@@ -21,7 +21,7 @@
 		<c:forEach items="${booksList }" var="book">
 			<tr>	
 				<td>${book.id }</td>
-				<td>${book.category_name }</td>
+				<td><a href="category?id=${book.category_id}">${book.category_name }</a></td>
 				<td><img src="${book.image }" height=100 width=100 /></td>
 				<td>${book.name }</td>
 				<td>${book.book_format }</td>

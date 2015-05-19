@@ -2,7 +2,8 @@ package Servlets;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -43,11 +44,11 @@ public class CategoryServlet extends HttpServlet {
 		
 		CategoryManager cm = new CategoryManager(ds);
 		
-		ArrayList<Category> theCategory = null;
-		String url = "/WEB-INF/viewcategory.jsp";
+		List<Category> theCategory = null;
+		String url = "/WEB-INF/index.jsp";
 		
 		try {
-			theCategory = cm.getCategory();
+			theCategory = cm.getCategoryTotals();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,6 +58,7 @@ public class CategoryServlet extends HttpServlet {
 			
 		System.out.println(theCategory);
 		request.setAttribute("categoryList", theCategory);
+		url = "/WEB-INF/viewcategory.jsp";
 		
 		getServletContext().getRequestDispatcher(url).forward(request, response);
 		

@@ -46,7 +46,7 @@ public class BooksByCategory extends HttpServlet {
 		BooksManager bm = new BooksManager(ds);
 		ArrayList<Books> booksByCategory = bm.getBooksByID(idString);
 		
-		request.setAttribute("theBooksByCategory", "booksByCategory");
+		request.setAttribute("theBooksByCategory",booksByCategory);
 		url = "/WEB-INF/booksbycategory.jsp";
 		System.out.println(booksByCategory);
 				

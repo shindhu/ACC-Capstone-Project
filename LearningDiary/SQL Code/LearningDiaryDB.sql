@@ -1,3 +1,4 @@
+-- Table Category
 DROP TABLE CATEGORY;
 SET SCHEMA APP;
 CREATE TABLE CATEGORY ( ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
@@ -5,13 +6,13 @@ CREATE TABLE CATEGORY ( ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START 
 
 INSERT INTO CATEGORY (NAME) values ('Autobiography');
 INSERT INTO CATEGORY (NAME) values ('Investments');
-INSERT INTO CATEGORY (NAME) values ('self Improvements');
+INSERT INTO CATEGORY (NAME) values ('Self Improvements');
 INSERT INTO CATEGORY (NAME) values ('Stories');
 INSERT INTO CATEGORY (NAME) values ('Technology');
 
 SELECT * FROM CATEGORY;
 
-
+-- Table Books
 DROP TABLE BOOKS;
 SET SCHEMA APP;
 CREATE TABLE BOOKS ( ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
@@ -39,10 +40,10 @@ INSERT INTO BOOKS(CATEGORY_ID,CATEGORY_NAME, IMAGE, NAME, BOOK_FORMAT, NOTES) VA
 SELECT * FROM BOOKS;
 
 -- to display the category name and count of books in each category
-select category.name, count(books.name) as total
+select category.id,category.name, count(books.name) as bookcounts
 from category, books
 where category.id = books.category_id
-group by category.name;
+group by category.id,category.name;
 
 select * from books where category_id = 2;
 
