@@ -23,8 +23,11 @@
 				<td><a href="booksbycategory?id=${category.id}">${category.bookcounts }</a></td>
 			</tr>
 		</c:forEach> 
-			
 	</table>
+	
+	<br>
+	
+	<button type="submit" value="AddCategory" >Add Category</button>
 
 </body>
 </html>

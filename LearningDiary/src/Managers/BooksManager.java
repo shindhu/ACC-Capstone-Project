@@ -53,7 +53,7 @@ public class BooksManager {
 		return theBooks;
 	}
 	
-	public ArrayList<Books> getBooksByID(String theID) 
+	public ArrayList<Books> getBookByID(String theID) 
 	{
 		ArrayList<Books> booksByID = new ArrayList<>();
 		Connection connection = null;
