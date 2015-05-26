@@ -107,7 +107,6 @@ group by category.id,category.name;
 
 
 
-
 select * from books where category_id = 2;
 select count(name) from books group by CATEGORY_id;
 

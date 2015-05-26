@@ -7,8 +7,10 @@
 
 </head>
 <body>
-
-	<table class="table table-bordered">
+	<c:import url="/navbar.jsp"></c:import>
+	
+	<div class="table-responsive" id="outerbody" >	
+	<table class="table table-bordered" >
 		<tr>
 			<th>ID</th>
 			<th>Category</th>
@@ -31,6 +33,7 @@
 		</c:forEach>
 			
 	</table>
+	</div>
 
 </body>
 </html>

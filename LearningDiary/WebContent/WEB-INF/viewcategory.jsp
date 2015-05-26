@@ -4,10 +4,12 @@
 <head>
 <title>LearningDiary Category</title>
 <%@ include file="/common-css-javascript.html"%>
-
 </head>
 <body>
 
+	<c:import url="/navbar.jsp"></c:import>
+
+	<div class="table-responsive" id="outerbody" style="width: 55%" >
 	<table class="table table-bordered">
 		<tr>
 			 <th>ID</th> 
@@ -24,10 +26,14 @@
 			</tr>
 		</c:forEach> 
 	</table>
+	</div>
 	
-	<br>
+	<div>
+		<a class="btn btn-lg" href="/LearningDiary/addCategory">Add Category</a>
+		
+		<a class="btn btn-lg" href="/LearningDiary/editCategory" >Edit</a>
+		
+	</div>
 	
-	<button type="submit" value="AddCategory" >Add Category</button>
-
 </body>
 </html>
