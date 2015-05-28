@@ -79,4 +79,107 @@ public class CategoryManager {
 		
 	}
 
+	public boolean addCategory(String name) throws SQLException
+	{
+		boolean addedCategory = false;
+		Connection connection = null;
+		
+		try { 
+			connection = ds.getConnection();
+			String theQueryString = "INSERT INTO CATEGORY (NAME) values (?)";
+			
+			PreparedStatement ps = connection.prepareStatement(theQueryString);
+			ps.setString(1, name);
+			
+			int updatedCount = ps.executeUpdate();
+			if(updatedCount >= 1) {
+				addedCategory = true;
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(connection != null) {
+				try {
+					connection.close();
+					
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return addedCategory;
+		
+	}
+	
+	// edit and update category in database
+	public boolean updateCategory(Category c) throws SQLException {
+		
+		boolean updatedCategory = false;
+		Connection connection = null;
+		
+		try {
+			connection = ds.getConnection();
+			String theQueryString = "update category set name=? where id=?";
+			
+			PreparedStatement ps = connection.prepareStatement(theQueryString);
+			ps.setString(1, c.getName());
+			
+			int updatedCount = ps.executeUpdate();
+			if(updatedCount >= 1) {
+				updatedCategory = true;
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return updatedCategory;
+		
+	}
+	
+	// delete category with ID from the database
+	public boolean deleteCategoryWithID(int id) throws SQLException {
+		
+		boolean deletedCategory = false;
+		Connection connection = null;
+		
+		try { 
+			connection = ds.getConnection();
+			String theQueryString = "delete from category where id =?";
+			
+			PreparedStatement ps = connection.prepareStatement(theQueryString);
+			ps.setInt(1, id);
+			
+			int updatedCount = ps.executeUpdate();
+			if (updatedCount >= 1) {
+				deletedCategory = true;
+				
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return deletedCategory;
+		
+	}
+	
 }

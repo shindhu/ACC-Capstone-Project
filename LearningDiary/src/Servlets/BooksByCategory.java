@@ -12,13 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import org.apache.derby.client.am.SqlException;
+
 import Domain.Books;
 import Managers.BooksManager;
 
 /**
  * Servlet implementation class BooksByCategory
  */
-@WebServlet({ "/BooksByCategory", "/booksbycategory" })
+@WebServlet({ "/BooksByCategory", "/booksByCategory" })
 public class BooksByCategory extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -38,13 +40,20 @@ public class BooksByCategory extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		HttpSession mySession = request.getSession();
+		
+		//HttpSession mySession = request.getSession();
 		
 		String url = "/WEB-INF/viewcategory.jsp";
 		String idString = request.getParameter("id");
 		
 		BooksManager bm = new BooksManager(ds);
-		ArrayList<Books> booksByCategory = bm.getBookByID(idString);
+		ArrayList<Books> booksByCategory = null;
+		try {
+			booksByCategory = bm.getBookByID(idString);
+		} catch (SqlException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		request.setAttribute("theBooksByCategory",booksByCategory);
 		url = "/WEB-INF/booksbycategory.jsp";

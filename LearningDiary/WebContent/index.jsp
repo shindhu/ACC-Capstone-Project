@@ -10,11 +10,11 @@
 </head>
 <body>
 	<div>
-		<c:import url="navbar.jsp"></c:import>
+		<c:import url="LearningDiary/navbar.jsp"></c:import>
 		<br><br><br><br>
 	</div>
-	<%-- <c:import url="/header.jsp"></c:import>
- --%>
-
+	
+	
+	
 </body>
 </html>

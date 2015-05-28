@@ -42,11 +42,20 @@ public class BooksServlet extends HttpServlet {
 		
 		BooksManager bm = new BooksManager(ds);
 		ArrayList<Books> theBooks = null;
-		
+		String booksByOrder;
 		String url = "/WEB-INF/viewbooks.jsp";
+		//String search;
 		
 		try {
-			theBooks = bm.getBooks();
+			
+			booksByOrder = request.getParameter("order");
+			if(booksByOrder != null && booksByOrder.equals("name"))
+			{
+				theBooks = bm.getBooksOrderByName();
+			} else {
+				theBooks = bm.getBooks();
+			}
+			System.out.println(theBooks);
 		} catch (SQLException e) {
 			
 			e.printStackTrace();

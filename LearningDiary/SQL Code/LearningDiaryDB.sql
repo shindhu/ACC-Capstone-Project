@@ -105,6 +105,16 @@ from category, books
 where category.id = books.category_id
 group by category.id,category.name;
 
+-- order books in asc
+select * from books order by name asc;
+select * from books order by id asc;
+
+-- update book
+update books set name='ghjijk' where id=56;
+
+
+
+select * from books where category_id=2 order by name asc;
 
 
 select * from books where category_id = 2;
