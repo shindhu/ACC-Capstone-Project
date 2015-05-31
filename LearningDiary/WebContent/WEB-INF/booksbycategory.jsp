@@ -7,7 +7,7 @@
 
 </head>
 <body>
-	<c:import url="navbar.jsp"></c:import>
+	<c:import url="/navbar.jsp"></c:import>
 	<div class="table-responsive" id="outerbody" style="height: 700px; overflow: auto">
 	<table class="table table-bordered">
 		<tr>

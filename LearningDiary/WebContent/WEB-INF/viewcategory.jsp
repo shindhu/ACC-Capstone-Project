@@ -7,10 +7,15 @@
 </head>
 <body>
 
-	<c:import url="navbar.jsp"></c:import>
+	<c:import url="/navbar.jsp"></c:import>
 
-	<div class="table-responsive" id="outerbody" style="width: 55%" >
-	<table class="table table-bordered">
+	<div>
+		<a class="btn btn-lg" href="/LearningDiary/addCategory" style="color:blue">Add Category</a>
+		
+	</div>
+	
+	<div class="table-responsive" id="outerbody"  >
+	<table class="table table-hover">
 		<tr>
 			 <th>ID</th> 
 			<th>Category</th>
@@ -30,10 +35,6 @@
 	</table>
 	</div>
 	
-	<div>
-		<a class="btn btn-lg" href="/LearningDiary/addCategory" style="color:red">Add Category</a>
 		
-	</div>
-	
 </body>
 </html>

@@ -126,36 +126,36 @@ public class BooksManager {
 	}
 	
 	
-	public List<Books> getBooksByKeyword(String search) throws IOException, SQLException {
-		
-		List<Books> theBooks = getBooks();
-		List<Books> filteredBooks = new ArrayList<>();
-		String searchKeyword = null;
-		
-		Connection connection = null;
+//	public List<Books> getBooksByKeyword(String search) throws IOException, SQLException {
+//		
+//		List<Books> theBooks = getBooks();
+//		List<Books> filteredBooks = new ArrayList<>();
+//		String searchKeyword = null;
+//		
+//		Connection connection = null;
+//
+//		try {
+//
+//			connection = ds.getConnection();
+//			PreparedStatement ps = connection
+//					.prepareStatement("select category_name, name, book_format, notes from books");
+//			ResultSet resultSet = ps.executeQuery();
+//
+//			while (resultSet.next()) {
+//				
+//				
+//			}
+//		for(Books filterBooks: theBooks) {
+//			if(searchKeyword != null) {
+//				
+//				
+//			}
+//		
+//		return filteredBooks;
+//		
+//			
+//	}
 
-		try {
-
-			connection = ds.getConnection();
-			PreparedStatement ps = connection
-					.prepareStatement("select category_name, name, book_format, notes from books");
-			ResultSet resultSet = ps.executeQuery();
-
-			while (resultSet.next()) {
-				
-				
-			}
-		for(Books filterBooks: theBooks) {
-			if(searchKeyword != null) {
-				
-				
-			}
-		
-		return filteredBooks;
-		
-			
-	}
-	
 	// get books using id of it 
 	public ArrayList<Books> getBookByID(String theID) throws SqlException
 	{

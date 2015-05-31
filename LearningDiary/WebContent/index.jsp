@@ -5,12 +5,10 @@
 <title>Learning Diary</title>
 
 <%@ include file="/common-css-javascript.html"%>
-
-
 </head>
 <body>
 	<div>
-		<c:import url="LearningDiary/navbar.jsp"></c:import>
+		<%@ include file ="/navbar.jsp" %>
 		<br><br><br><br>
 	</div>
 	

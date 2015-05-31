@@ -7,10 +7,13 @@
 
 </head>
 <body>
-	<c:import url="navbar.jsp"></c:import>
+	<c:import url="/navbar.jsp"></c:import>
 
-	<div class="table-responsive" id="outerbody"
-		style="height: 600px; overflow: auto">
+	<div>
+		<a class="btn btn-lg" href="/LearningDiary/addBook" style="color:blue">Add Book</a>
+	</div>
+	
+	<div class="table-responsive" id="outerbody">
 		
 		<!-- its optional to have the select books by id and name
 		<form action="/LearningDiary/books" method="get">
@@ -21,7 +24,7 @@
 			<input type="submit" value="submit ">
 		</form> -->
 		
-		<table class="table table-bordered">
+		<table class="table table-hover">
 			<tr>
 				<th> <a href="/LearningDiary/books">ID<span class="glyphicon glyphicon-sort"></span></a></th>
 				<th>Category</th>
@@ -48,8 +51,5 @@
 		</table>
 	</div>
 	
-	<div>
-		<a class="btn btn-lg" href="/LearningDiary/addBook" style="color:red">Add Book</a>
-	</div>
-</body>
+	</body>
 </html>
