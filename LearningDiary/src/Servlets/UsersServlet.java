@@ -13,25 +13,24 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import Domain.Books;
-import Managers.BooksManager;
+import Domain.Users;
+import Managers.UsersManager;
 
 /**
- * Servlet implementation class BooksServlet
+ * Servlet implementation class UsersServlet
  */
-@WebServlet({ "/BooksServlet", "/books" })
-public class BooksServlet extends HttpServlet {
+@WebServlet({ "/UsersServlet", "/users" })
+public class UsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	@Resource(name="jdbc/MyDB")
+	@Resource(name = "jdbc/MyDB")
 	DataSource ds;
 	
-    
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BooksServlet() {
+    public UsersServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,43 +39,36 @@ public class BooksServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String url = "/WEB-INF/viewbooks.jsp";
-		BooksManager bm = new BooksManager(ds);
-		ArrayList<Books> theBooks = null;// order books by id
-		String booksByOrder; // order books by name in alphabetical  
 
+		String url = "/WEB-INF/viewusers.jsp";
+		UsersManager um = new UsersManager(ds);
+		ArrayList<Users> theUsers = null;
+		
 		HttpSession session = request.getSession();
 		Boolean loggedInBoolean = (Boolean) session.getAttribute("isLoggedIn");
 		
 		if(loggedInBoolean != null) {
-			boolean loggedIn = loggedInBoolean.booleanValue();
+			Boolean loggedIn = loggedInBoolean.booleanValue();
 			if(loggedIn) {
 				try {
-					
-					booksByOrder = request.getParameter("order");
-					if(booksByOrder != null && booksByOrder.equals("name"))
-					{
-						theBooks = bm.getBooksOrderByName();
-					} else {
-						theBooks = bm.getBooks();
-					}
-					System.out.println(theBooks);
-				} catch (SQLException e) {
-					
-					e.printStackTrace();
+					theUsers = um.getUsers();
+				
+					System.out.println(theUsers);
+				} catch(SQLException e) {
+					url = "/dberror.jsp";
 					getServletContext().getRequestDispatcher(url).forward(request, response);
+					return;
 					
 				}
 			}
 		}
 		
-		System.out.println(theBooks);
-		request.setAttribute("booksList", theBooks);
+		if(theUsers != null) {
+			url = "/WEB-INF/viewusers.jsp";
+			request.setAttribute("user", theUsers);
+		}
 		
 		getServletContext().getRequestDispatcher(url).forward(request, response);
-		
-		
 	}
 
 	/**

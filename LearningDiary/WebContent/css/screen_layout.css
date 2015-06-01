@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+
+body {
+	margin-top: 50px;
+    margin-bottom: 150px;
+    margin-right: 150px;
+    margin-left: 150px;
+    bottom:100px;
+   
+    
+}
+#outerbody {
+ 	
+ 	font-size: 18;
+ 	border-color: gray;
+	border-style: solid;
+    border-width: 2px;
+    margin-top: 20px;
+    height: 650px;
+    overflow: auto; 
+    
+     /* width: 1023px;  z-index: 1; left: 10px; top: 15px; */
+    
+   /*  border-top: 60px;
+    border-bottom: 130px;
+    border-right: 140px;
+    border-left: 140px */
+}
+
+

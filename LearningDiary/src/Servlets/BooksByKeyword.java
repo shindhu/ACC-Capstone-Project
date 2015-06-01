@@ -3,6 +3,7 @@ package Servlets;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -17,21 +18,19 @@ import Domain.Books;
 import Managers.BooksManager;
 
 /**
- * Servlet implementation class BooksServlet
+ * Servlet implementation class searchBook
  */
-@WebServlet({ "/BooksServlet", "/books" })
-public class BooksServlet extends HttpServlet {
+@WebServlet({ "/BooksByKeyword", "/booksByKeyword" })
+public class BooksByKeyword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Resource(name="jdbc/MyDB")
 	DataSource ds;
-	
-    
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BooksServlet() {
+    public BooksByKeyword() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,40 +40,22 @@ public class BooksServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String url = "/WEB-INF/viewbooks.jsp";
+		//HttpSession mySession = request.getSession();
 		BooksManager bm = new BooksManager(ds);
-		ArrayList<Books> theBooks = null;// order books by id
-		String booksByOrder; // order books by name in alphabetical  
-
-		HttpSession session = request.getSession();
-		Boolean loggedInBoolean = (Boolean) session.getAttribute("isLoggedIn");
 		
-		if(loggedInBoolean != null) {
-			boolean loggedIn = loggedInBoolean.booleanValue();
-			if(loggedIn) {
-				try {
-					
-					booksByOrder = request.getParameter("order");
-					if(booksByOrder != null && booksByOrder.equals("name"))
-					{
-						theBooks = bm.getBooksOrderByName();
-					} else {
-						theBooks = bm.getBooks();
-					}
-					System.out.println(theBooks);
-				} catch (SQLException e) {
-					
-					e.printStackTrace();
-					getServletContext().getRequestDispatcher(url).forward(request, response);
-					
-				}
-			}
+		List<Books> theBooks = new ArrayList<>();
+		//List<Books> filteredBooks = new ArrayList<>();
+		
+		
+		try {
+			theBooks = bm.getBooks();
+			
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
 		}
 		
-		System.out.println(theBooks);
-		request.setAttribute("booksList", theBooks);
-		
-		getServletContext().getRequestDispatcher(url).forward(request, response);
 		
 		
 	}
