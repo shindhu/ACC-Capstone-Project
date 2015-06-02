@@ -18,27 +18,27 @@
 			
 			<div class="form-group">
 				<label>Category ID</label>
-				<input class="form-control" style="width:1000px" type="text" name="category_id" value="${book.category_id }" required placeholder="Category ID"><br>
+				<input class="form-control" style="width:500px" type="text" name="category_id" value="${book.category_id }" required placeholder="Category ID"><br>
 			</div>
 			
 			<div class="from-group">	
 				<label>Category Name</label>
-				<input class="form-control" style="width:1000px" type="text" name="category_name" value="${book.category_name }" required placeholder="Category Name"><br>
+				<input class="form-control" style="width:500px" type="text" name="category_name" value="${book.category_name }" required placeholder="Category Name"><br>
 			</div>
 			
 			<div class="from-group">	
 				<label>Image</label>
-				<input class="form-control" style="width:1000px" type="text" name="image" value="${book.image }" placeholder="Paste the book image link from your browser"><br>
+				<input class="form-control" style="width:500px" type="text" name="image" value="${book.image }" placeholder="Paste the book image link from your browser"><br>
 			</div>
 			
 			<div class="from-group">	
 				<label>Name</label>
-				<input class="form-control" style="width:1000px" type="text" name="name" value="${book.name }" required placeholder="Book Title "><br>
+				<input class="form-control" style="width:500px" type="text" name="name" value="${book.name }" required placeholder="Book Title "><br>
 			</div>
 			
 			<div class="from-group">	
 				<label>Book Format</label>
-				<input class="form-control" style="width:1000px" type="text" name="book_format" value="${book.book_format }" placeholder="Book Format"><br>
+				<input class="form-control" style="width:500px" type="text" name="book_format" value="${book.book_format }" placeholder="Book Format"><br>
 			</div>
 			
 			<div class="from-group">	

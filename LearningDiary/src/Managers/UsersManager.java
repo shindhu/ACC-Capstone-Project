@@ -64,13 +64,21 @@ public class UsersManager {
 			
 			
 			String theQueryString = "insert into users (username, password, email) values (?,?,?)";
-			PreparedStatement ps = connection.prepareStatement(theQueryString);
+			PreparedStatement ps = connection.prepareStatement(theQueryString, new String[] {"id"});
 			
 			ps.setString(1, uname);
 			ps.setString(2, upassword);
 			ps.setString(3, uemail);
 			
 			ps.execute();
+			
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+			System.out.println("ID: " + rs.getObject(1));
+			theUser.setId(rs.getInt(1));
+			rs.close();
+			
+			
 			ps.close();
 			connection.close();
 			

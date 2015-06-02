@@ -17,7 +17,7 @@
 			
 			<div class="form-group">
 				<label>Category Name</label>
-				<input class="form-control" style="width:1000px" type="text" name="name" value="${category.name }" required placeholder="Enter the Category name"><br>
+				<input class="form-control" style="width:500px" type="text" name="name" value="${category.name }" required placeholder="Enter the Category name"><br>
 			</div>
 			
 			<label>&nbsp; </label>

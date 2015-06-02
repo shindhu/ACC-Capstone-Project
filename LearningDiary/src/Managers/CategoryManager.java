@@ -54,7 +54,7 @@ public class CategoryManager {
 		Connection connection = null;
 		try {
 			connection = ds.getConnection();
-			PreparedStatement ps = connection.prepareStatement("select category.id,category.name, count(books.name) as bookcounts from category, books where category.id = books.category_id group by category.id,category.name");
+			PreparedStatement ps = connection.prepareStatement("select category.id, category.name, count(books.category_id) as bookcounts from category left outer join books on category.id = books.category_id  group by category.id,category.name");
 			ResultSet resultSet = ps.executeQuery();
 			
 			while(resultSet.next()) {

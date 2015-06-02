@@ -9,13 +9,28 @@
 <body>
 	
 	<c:import url="/navbar.jsp" />
+	<%-- <c:out value="${ user}"> </c:out> --%>
 	
-	<div id="outerbody">
-	<c:out value="${ user}"> </c:out>
-		<%-- ${user.username}<br> 
-		${user.id }<br>
-		${user.email }		 --%>
+	<div class="table-responsive" id="outerbody"  >
+	<table class="table table-hover">
+		<tr>
+			 <th>ID</th> 
+			<th>Users</th>
+			<th>Email</th>
+			<th>Edit/Del</th>
+		</tr>
+		
+		 <c:forEach items="${user }" var="theUser">
+			<tr>	
+				<td>${theUser.id }</td>
+				<td>${theUser.username}</td>
+				<td>${theUser.email }</td>
+				<td>000</td>
+			</tr>
+		</c:forEach> 
+	</table>
 	</div>
+	
 
 </body>
 </html>

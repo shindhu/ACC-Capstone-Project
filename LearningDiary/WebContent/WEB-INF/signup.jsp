@@ -12,8 +12,10 @@
 	<div id="outerbody">
 		<h3 style="text-align: left; color: blue;">Sign Up</h3>
 
-		<form class="form-horizontal" action="SignupServlet" method="post">
+		<form  action="SignupServlet" method="post">
 			<input type="hidden" name="action" value="signup">
+			${error }
+			${error_username }
 			<div class="form-group">
 				<label>Username:</label> <input class="form-control"
 					style="width: 300px" type="text" name="username" required

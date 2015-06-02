@@ -22,7 +22,7 @@
 			</c:if>	
 			 --%>
 		<p>
-			&nbsp;Your id: ${user.id }<br> &nbsp;Your email: ${user.email }
+			&nbsp;Your id: ${id }<br> &nbsp;Your email: ${email }
 		</p>
 	</div>
 

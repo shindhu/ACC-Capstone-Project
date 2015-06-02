@@ -84,7 +84,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("isLoggedIn", true);
 				session.setAttribute("capName", theFoundUser.getCapitalizedUsername());
 				
-				url = "/WEB-INF/main.jsp";
+				url = "/index.jsp";
 				
 			} else {
 				request.setAttribute("error", "The username and password was incorrect! ");

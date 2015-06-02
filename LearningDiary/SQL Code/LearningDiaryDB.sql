@@ -3,7 +3,7 @@ DROP TABLE USERS;
 SET SCHEMA APP;
 
 CREATE TABLE USERS (ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-					USERNAME VARCHAR(50) NOT NULL,
+					USERNAME VARCHAR(50) NOT NULL UNIQUE,
 					PASSWORD VARCHAR(20) NOT NULL,
 					EMAIL VARCHAR (50) NOT NULL);
 
@@ -123,6 +123,13 @@ select category.id,category.name, count(books.name) as bookcounts
 from category, books
 where category.id = books.category_id
 group by category.id,category.name;
+
+select category.id, category.name, count(books.category_id) as bookcounts
+from category left outer join books on category.id = books.category_id 
+group by category.id,category.name;
+
+
+
 
 -- order books in asc
 select * from books order by name asc;
