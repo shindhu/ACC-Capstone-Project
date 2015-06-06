@@ -1,18 +1,16 @@
 package Managers;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.sql.DataSource;
 
 import org.apache.derby.client.am.SqlException;
 
 import Domain.Books;
+import Exceptions.DBErrorException;
 
 
 public class BooksManager {
@@ -157,7 +155,44 @@ public class BooksManager {
 //	}
 
 	// get books using id of it 
-	public ArrayList<Books> getBookByID(String theID) throws SqlException
+	public ArrayList<Books> getBookWithBookID (int theID) throws SQLException {
+		
+		ArrayList<Books> bookByBookID = new ArrayList<>();
+		Connection connection = null;
+		
+		try {
+			connection = ds.getConnection();
+			PreparedStatement ps = connection.prepareStatement("select id, category_id, category_name, image, name, book_format, notes from books where id=? ");
+			ps.setInt(1, theID);
+			ResultSet resultSet = ps.executeQuery();
+
+			while(resultSet.next()) {
+				int idString = resultSet.getInt("id");
+				int category_idString = resultSet.getInt("category_id");
+				String category_nameString = resultSet.getString("category_name");
+				String imageString = resultSet.getString("image");
+				String nameString = resultSet.getString("name");
+				String book_formatString = resultSet.getString("book_format");
+				String notesString = resultSet.getString("notes");
+				
+				bookByBookID.add(new Books(idString, category_idString, category_nameString, 
+						imageString, nameString, book_formatString, notesString));
+				
+			}
+			
+			resultSet.close();
+			ps.close();
+				
+		} catch(SQLException e) {
+			e.printStackTrace();
+			
+		}
+		
+		return bookByBookID;
+		
+	}
+	
+	public ArrayList<Books> getBookByID(int theID) throws SqlException, DBErrorException
 	{
 		ArrayList<Books> booksByID = new ArrayList<>();
 		Connection connection = null;
@@ -165,7 +200,7 @@ public class BooksManager {
 		try {
 			connection = ds.getConnection();
 			PreparedStatement ps = connection.prepareStatement("select id, category_id, category_name, image, name, book_format, notes from books where category_id = ? ");
-			ps.setString(1, theID);
+			ps.setInt(1, theID);
 			ResultSet resultSet = ps.executeQuery();
 
 			while(resultSet.next()) {
@@ -187,6 +222,7 @@ public class BooksManager {
 				
 		} catch(SQLException e) {
 			e.printStackTrace();
+			throw new DBErrorException();
 		}
 		
 		return booksByID;
@@ -236,7 +272,7 @@ public class BooksManager {
 	}
 	
 	// edit and update the book in database
-	public boolean updateBook(Books b) throws  SQLException {
+	public boolean updateBook(Books b) throws  SQLException, DBErrorException {
 		
 		boolean updatedBook = false;
 		Connection connection = null;
@@ -268,6 +304,7 @@ public class BooksManager {
 					connection.close();
 				} catch(SQLException e){
 					e.printStackTrace();
+					throw  new DBErrorException();
 				}
 			}
 		}

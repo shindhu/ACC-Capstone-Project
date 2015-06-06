@@ -9,12 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.apache.derby.client.am.SqlException;
 
 import Domain.Books;
+import Exceptions.DBErrorException;
 import Managers.BooksManager;
 
 /**
@@ -44,13 +44,13 @@ public class BooksByCategory extends HttpServlet {
 		//HttpSession mySession = request.getSession();
 		
 		String url = "/WEB-INF/viewcategory.jsp";
-		String idString = request.getParameter("id");
+		int id = new Integer(request.getParameter("id"));
 		
 		BooksManager bm = new BooksManager(ds);
 		ArrayList<Books> booksByCategory = null;
 		try {
-			booksByCategory = bm.getBookByID(idString);
-		} catch (SqlException e) {
+			booksByCategory = bm.getBookByID(id);
+		} catch (SqlException | DBErrorException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

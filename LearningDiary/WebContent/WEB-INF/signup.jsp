@@ -3,11 +3,11 @@
 <html>
 <head>
 <title>Sign Up</title>
-<%@ include file="/common-css-javascript.html"%>
+<%@ include file="/WEB-INF/common-css-javascript.html"%>
 
 </head>
 <body>
-	<c:import url="/navbar.jsp" />
+	<c:import url="/WEB-INF/navbar.jsp" />
 
 	<div id="outerbody">
 		<h3 style="text-align: left; color: blue;">Sign Up</h3>

@@ -9,15 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import Domain.Users;
 import Managers.UsersManager;
 
-/**
- * Servlet implementation class SignupServlet
- */
+
 @WebServlet({ "/SignupServlet", "/signup" })
 public class SignupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,18 +22,13 @@ public class SignupServlet extends HttpServlet {
 	@Resource(name = "jdbc/MyDB")
 	DataSource ds;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+	
 	public SignupServlet() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
@@ -46,14 +38,10 @@ public class SignupServlet extends HttpServlet {
 				.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		String action = request.getParameter("action");
 		String url = "/WEB-INF/signup.jsp";
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -95,7 +83,7 @@ public class SignupServlet extends HttpServlet {
 					return;
 				}
 			} catch (SQLException e) {
-				url = "/dberror.jsp";
+				url = "/WEB-INF/dberror.jsp";
 				getServletContext().getRequestDispatcher(url).forward(request,
 						response);
 				return;

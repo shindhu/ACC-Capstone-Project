@@ -3,7 +3,7 @@
 <html>
 <head>
 <title>Error</title>
-<%@ include file="/common-css-javascript.html"%>
+<%@ include file="/WEB-INF/common-css-javascript.html"%>
 
 </head>
 <body>

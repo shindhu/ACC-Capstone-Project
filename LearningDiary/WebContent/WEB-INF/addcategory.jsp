@@ -2,18 +2,18 @@
 
 <html>
 <head>
-<title>Add Category</title>
-<%@ include file="/common-css-javascript.html"%>
+<title>LearningDiary:Add_Category</title>
+<%@ include file="/WEB-INF/common-css-javascript.html"%>
 
 </head>
 <body>
-	<c:import url="/navbar.jsp"></c:import>
+	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 	
 	<div id="outerbody"> <!-- class="col-md-offset-1 col-md-8" -->
 	<h2 style="text-align: left;color:blue;">Add Category</h2>
 	
 		<form  action="addCategory" method = "post">
-			<input type="hidden" name="action" value="add-book">
+			<input type="hidden" name="action" value="add-category">
 			
 			<div class="form-group">
 				<label>Category Name</label>

@@ -3,12 +3,12 @@
 <html>
 <head>
 <title>Users</title>
-<%@ include file="/common-css-javascript.html"%>
+<%@ include file="/WEB-INF/common-css-javascript.html"%>
 
 </head>
 <body>
 	
-	<c:import url="/navbar.jsp" />
+	<c:import url="/WEB-INF/navbar.jsp" />
 	<%-- <c:out value="${ user}"> </c:out> --%>
 	
 	<div class="table-responsive" id="outerbody"  >

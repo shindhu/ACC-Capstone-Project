@@ -3,11 +3,11 @@
 <html>
 <head>
 <title>LearningDiary Books</title>
-<%@ include file="/common-css-javascript.html"%>
+<%@ include file="/WEB-INF/common-css-javascript.html"%>
 
 </head>
 <body>
-	<c:import url="/navbar.jsp"></c:import>
+	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 
 	<div>
 		<a class="btn btn-lg" href="/LearningDiary/addBook" style="color:blue">Add Book</a>
@@ -43,7 +43,13 @@
 					<td>${book.name }</td>
 					<td>${book.book_format }</td>
 					<td>${book.notes }</td>
-					<td>00000</td>
+					<td style="width:100px">
+						<a class="btn btn-default btn-md" href="editBook?id=${book.id }"> Edit </a>
+						<form action="deleteBook" method="post">
+							<input type="hidden" name="id" value="${book.id }">
+							<input class="btn btn-danger btn-md" type="submit" value="Delete" id="submit">
+						</form>
+					</td>
 
 				</tr>
 			</c:forEach>

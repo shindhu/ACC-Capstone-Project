@@ -3,11 +3,11 @@
 <html>
 <head>
 <title>BookByCategory</title>
-<%@ include file="/common-css-javascript.html"%>
+<%@ include file="/WEB-INF/common-css-javascript.html"%>
 
 </head>
 <body>
-	<c:import url="/navbar.jsp"></c:import>
+	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 	<div class="table-responsive" id="outerbody" style="height: 700px; overflow: auto">
 	<table class="table table-bordered">
 		<tr>

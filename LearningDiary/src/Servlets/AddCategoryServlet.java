@@ -12,11 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import Managers.CategoryManager;
-import sun.reflect.ReflectionFactory.GetReflectionFactoryAction;
 
-/**
- * Servlet implementation class AddCategoryServlet
- */
 @WebServlet({ "/AddCategoryServlet", "/addCategory" })
 public class AddCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,25 +20,18 @@ public class AddCategoryServlet extends HttpServlet {
 	@Resource(name="jdbc/MyDB")
 	DataSource ds;
 	
-	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public AddCategoryServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		getServletContext().getRequestDispatcher("/WEB-INF/addcategory.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String url = request.getContextPath() + "/category";

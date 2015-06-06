@@ -16,28 +16,19 @@ import javax.sql.DataSource;
 import Domain.Users;
 import Managers.UsersManager;
 
-/**
- * Servlet implementation class UsersServlet
- */
+
 @WebServlet({ "/UsersServlet", "/users" })
 public class UsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Resource(name = "jdbc/MyDB")
 	DataSource ds;
-	
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	   
     public UsersServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String url = "/WEB-INF/viewusers.jsp";
@@ -55,7 +46,7 @@ public class UsersServlet extends HttpServlet {
 				
 					System.out.println(theUsers);
 				} catch(SQLException e) {
-					url = "/dberror.jsp";
+					url = "/WEB-INF/dberror.jsp";
 					getServletContext().getRequestDispatcher(url).forward(request, response);
 					return;
 					
@@ -70,12 +61,4 @@ public class UsersServlet extends HttpServlet {
 		
 		getServletContext().getRequestDispatcher(url).forward(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
 }

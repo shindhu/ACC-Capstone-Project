@@ -3,17 +3,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Home</title>
-<%@ include file="/common-css-javascript.html"%>
+<title>LearningDiary Contact</title>
+<%@ include file="/WEB-INF/common-css-javascript.html"%>
 
 
 </head>
 <body>
 
-	<c:import url="navbar.jsp"></c:import>
+	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 	
 	<div id="outerbody">
-		welcome to the home page.
+		Contact us
 	</div>
 	
 </body>

@@ -20,9 +20,9 @@
 			<font style="color: green">
 
 				<ul class="nav navbar-nav navbar-left" style="font-size: small;">
-					<li ><a href="home.jsp" style="color: green;"><span class="glyphicon glyphicon-home"></span></a></li>
-					<li><a href="about.jsp" style="color:green;">About</a></li>
-					<li><a href="contact.jsp" style="color:green;">Contact Us</a></li>
+					<li ><a href="/LearningDiary/home" style="color: green;"><span class="glyphicon glyphicon-home"></span></a></li>
+					<li><a href="/LearningDiary/about" style="color:green;">About</a></li>
+					<li><a href="/LearningDiary/contact" style="color:green;">Contact Us</a></li>
 					
 				</ul>	
 					
@@ -38,15 +38,15 @@
 					
 					<c:if test="${isLoggedIn == true }">
 					<ul class="nav navbar-nav navbar-left" style="font-size: small;">
-						<li><a href="about.jsp" style="color:green;"></a></li>
+						<li><a href="/LearningDiary/about" style="color:green;"></a></li>
 						<li><a href="/LearningDiary/category" style="color: green;">Category</a></li>
 						<li><a href="/LearningDiary/books" style="color: green;">Books</a></li>
 						<li><a href="/LearningDiary/users" style="color:green; ">Users</a></li>
-						<li><a href="contact.jsp" style="color:green;"></a></li>
+						<li><a href="/LearningDiary//contact" style="color:green;"></a></li>
 											
 					</ul>
 					<ul class="nav navbar-nav navbar-right" style="font-size: small;">
-						<li><a href="main.jsp">Logged in as ${capName }</a></li>
+						<li><a >Logged in as ${capName }</a></li>
 						<li><a href="/LearningDiary/logout" style="color: green;"><span class="glyphicon glyphicon-log-out"></span>
 						Log Out  </a></li>
 					</ul>

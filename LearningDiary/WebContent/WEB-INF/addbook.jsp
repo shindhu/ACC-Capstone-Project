@@ -4,11 +4,11 @@
 <html>
 <head>
 <title>Add Book</title>
-<%@ include file="/common-css-javascript.html"%>
+<%@ include file="/WEB-INF/common-css-javascript.html"%>
 
 </head>
 <body >
-	<c:import url="/navbar.jsp"></c:import>
+	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 	
 	<div id="outerbody"> <!-- class="col-md-offset-1 col-md-8" -->
 	<h2 style="text-align: left; color:blue">Add Book</h2>

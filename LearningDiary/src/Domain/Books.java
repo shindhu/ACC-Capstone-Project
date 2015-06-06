@@ -83,8 +83,7 @@ public class Books {
 				+ ", name=" + name + ", book_format=" + book_format
 				+ ", notes=" + notes + "]";
 	}
-	
-	
-	
+
+
 	
 }

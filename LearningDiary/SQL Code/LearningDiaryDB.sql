@@ -31,6 +31,7 @@ INSERT INTO CATEGORY (NAME) values ('Stories');
 INSERT INTO CATEGORY (NAME) VALUES ('Other');
 
 SELECT * FROM CATEGORY;
+update category set name='baaaaack' where id=9;
 
 -- Table Books
 DROP TABLE BOOKS;
@@ -45,7 +46,7 @@ CREATE TABLE BOOKS ( ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WIT
 	
 -- 1 Autobiography Books
 INSERT INTO BOOKS(CATEGORY_ID,CATEGORY_NAME, IMAGE, NAME, BOOK_FORMAT, NOTES) VALUES(1,'Autobiography & Biography', 'http://upload.wikimedia.org/wikipedia/en/3/3a/Wings_of_Fire_by_A_P_J_Abdul_Kalam_Book_Cover.jpg','Wings of Fire','HardCover','When the student is ready, the teacher will appear - How true!');
-INSERT INTO BOOKS(CATEGORY_ID,CATEGORY_NAME, IMAGE, NAME, BOOK_FORMAT, NOTES) VALUES(1,'Autobiography & Biography', 'http://d.gr-assets.com/books/1348842650l/3142407.jpg','The Name Is Rajinikanth','HardCover','SUPER HIT STAR IN KOLLYWOOD, DEVOTEE OF BABAJI & RAGAVENDRA');
+INSERT INTO BOOKS(CATEGORY_ID,CATEGORY_NAME, IMAGE, NAME, BOOK_FORMAT, NOTES) VALUES(1,'Autobiography & Biography', 'http://d.gr-assets.com/books/1348842650l/3142407.jpg','The Name Is Rajinikanth','HardCover','Super Star in kollywood, devotte of Babaji & Ragavendra');
 INSERT INTO BOOKS(CATEGORY_ID,CATEGORY_NAME, IMAGE, NAME, BOOK_FORMAT, NOTES) VALUES(1,'Autobiography & Biography', 'http://upload.wikimedia.org/wikipedia/en/e/e4/Steve_Jobs_by_Walter_Isaacson.jpg','Steve Jobs','HardCover',' American entrepreneur, marketer, and inventor, who was the cofounder, chairman, and CEO of Apple Inc. ');
 INSERT INTO BOOKS(CATEGORY_ID,CATEGORY_NAME, IMAGE, NAME, BOOK_FORMAT, NOTES) VALUES(1,'Autobiography & Biography', 'https://s3-eu-west-1.amazonaws.com/userlike-cdn-blog/in-the-plex.jpg','In The Plex','MP3 & CD',' How Google Thinks, Works, and Shapes Our Lives. The key to Google’s success in all these businesses, Levy reveals, is its engineering mind-set and adoption of such Internet values as speed, openness, experimentation, and risk taking.');
 INSERT INTO BOOKS(CATEGORY_ID,CATEGORY_NAME, IMAGE, NAME, BOOK_FORMAT, NOTES) VALUES(1,'Autobiography & Biography', 'http://d.gr-assets.com/books/1411331352l/23164924.jpg','Reagan','Kindle','Reagan shut down the age of liberalism, Brands shows, and ushered in the age of Reagan, whose defining principles are still powerfully felt today.');
@@ -117,6 +118,8 @@ INSERT INTO BOOKS(CATEGORY_ID,CATEGORY_NAME, IMAGE, NAME, BOOK_FORMAT, NOTES) VA
 INSERT INTO BOOKS(CATEGORY_ID,CATEGORY_NAME, IMAGE, NAME, BOOK_FORMAT, NOTES) VALUES(6,'Other','http://ecx.images-amazon.com/images/I/51QuJvdTXfL._SY344_BO1,204,203,200_.jpg','Pinkalicious: Cherry Blossom','Kindle','Pinkalicious experiences a traditional Japanese cherry blossom celebration and learns to fly a kite with the help of a new friend.');
 
 SELECT * FROM BOOKS;
+
+select * from books where id=4;
 
 -- to display the category name and count of books in each category
 select category.id,category.name, count(books.name) as bookcounts

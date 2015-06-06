@@ -16,9 +16,6 @@ import javax.sql.DataSource;
 import Domain.Books;
 import Managers.BooksManager;
 
-/**
- * Servlet implementation class BooksServlet
- */
 @WebServlet({ "/BooksServlet", "/books" })
 public class BooksServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,20 +23,12 @@ public class BooksServlet extends HttpServlet {
 	@Resource(name="jdbc/MyDB")
 	DataSource ds;
 	
-    
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public BooksServlet() {
         super();
-        // TODO Auto-generated constructor stub
+       
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String url = "/WEB-INF/viewbooks.jsp";
 		BooksManager bm = new BooksManager(ds);
@@ -76,14 +65,5 @@ public class BooksServlet extends HttpServlet {
 		
 		getServletContext().getRequestDispatcher(url).forward(request, response);
 		
-		
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
 }

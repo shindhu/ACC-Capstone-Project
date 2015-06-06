@@ -4,11 +4,11 @@
 <head>
 <title>Learning Diary</title>
 
-<%@ include file="/common-css-javascript.html"%>
+<%@ include file="/WEB-INF/common-css-javascript.html"%>
 </head>
 <body>
 	<div>
-		<%@ include file ="/navbar.jsp" %>
+		<%@ include file ="/WEB-INF/navbar.jsp" %>
 		<br><br><br><br>
 	</div>
 	

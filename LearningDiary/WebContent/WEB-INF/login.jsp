@@ -3,16 +3,17 @@
 <html>
 <head>
 <title>Login</title>
-<%@ include file="/common-css-javascript.html"%>
+<%@ include file="/WEB-INF/common-css-javascript.html"%>
 
 </head>
 <body>
-	<c:import url="/navbar.jsp" />
+	<c:import url="/WEB-INF/navbar.jsp" />
 	
 	<div id="outerbody">
 		<h3 style="text-align: left;color:blue;">Login</h3>
 
 		<form  action="LoginServlet" method="post">
+			${error }
 			<input type="hidden" name="action" value="login">
 			<div class="form-group">
 				<label>Username:</label> <input class="form-control"

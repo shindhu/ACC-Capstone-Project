@@ -47,6 +47,34 @@ public class CategoryManager {
 		return theCategory;
 	}
 
+	public Category getCategoryByID(int id) throws SQLException {
+		
+		Category categoryByID = null;
+		Connection connection = ds.getConnection();
+		
+		try {
+			PreparedStatement ps = connection.prepareStatement("select id, name from category where id=?");
+			ps.setInt(1, id);
+			
+			ResultSet resultSet = ps.executeQuery();
+			while(resultSet.next()) {
+				categoryByID = new Category(resultSet.getInt("id"),
+												resultSet.getString("name"));
+					
+			}
+			resultSet.close();
+			ps.close();
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		}
+		return categoryByID;
+		
+	}
+	
+	
 	public List<Category> getCategoryTotals() throws SQLException
 	{
 		List<Category> bookCounts = new ArrayList<>();
@@ -121,28 +149,24 @@ public class CategoryManager {
 		
 		try {
 			connection = ds.getConnection();
-			String theQueryString = "update category set name=? where id=?";
-			
-			PreparedStatement ps = connection.prepareStatement(theQueryString);
+			PreparedStatement ps = connection.prepareStatement("update category set name=? where id=?");
 			ps.setString(1, c.getName());
 			
-			int updatedCount = ps.executeUpdate();
-			if(updatedCount >= 1) {
-				updatedCategory = true;
-				
-			}
+			ps.execute();
+			updatedCategory = true;
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if (connection != null) {
+			if(connection != null) {
 				try {
 					connection.close();
-				} catch(SQLException e) {
+				} catch (SQLException e){
 					e.printStackTrace();
 				}
 			}
 		}
-		
 		return updatedCategory;
 		
 	}

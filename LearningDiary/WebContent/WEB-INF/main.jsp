@@ -3,17 +3,17 @@
 <html>
 <head>
 <title>User LoggedIn Main Page</title>
-<%@ include file="/common-css-javascript.html"%>
+<%@ include file="/WEB-INF/common-css-javascript.html"%>
 
 </head>
 <body>
 
-	<c:import url="/navbar.jsp">
+	<c:import url="/WEB-INF/navbar.jsp">
 	</c:import>
 	<div id="outerbody">
 		<br>
 		<p style="text-align: left; color: blue;">&nbsp;Welcome to
-			LearningDiary ${capName }.</p>
+			LearningDiary, ${capName }.</p>
 
 		<%-- <c:param name= "isLoggedIn" value="${isLoggedIn }"></c:param>
 				
@@ -22,7 +22,7 @@
 			</c:if>	
 			 --%>
 		<p>
-			&nbsp;Your id: ${id }<br> &nbsp;Your email: ${email }
+			&nbsp;Your id: ${id }<br> &nbsp;Email: ${email }
 		</p>
 	</div>
 

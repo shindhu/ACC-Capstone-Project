@@ -3,11 +3,11 @@
 <html>
 <head>
 <title>LearningDiary Category</title>
-<%@ include file="/common-css-javascript.html"%>
+<%@ include file="/WEB-INF/common-css-javascript.html"%>
 </head>
 <body>
 
-	<c:import url="/navbar.jsp"></c:import>
+	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 
 	<div>
 		<a class="btn btn-lg" href="/LearningDiary/addCategory" style="color:blue">Add Category</a>
@@ -29,7 +29,13 @@
 				<td>${category.id }</td>
 				<td><a href="booksByCategory?id=${category.id}">${category.name }</a></td>
 				<td><a href="booksByCategory?id=${category.id}">${category.bookcounts }</a></td>
-				<td>000</td>
+				<td>
+					<a class="btn btn-default btn-md" href="editCategory?id=${category.id }"> Edit </a>
+						<form action="deleteCategory" method="post">
+							<input type="hidden" name="id" value="${category.id }">
+							<input class="btn btn-danger btn-md" type="submit" value="Delete" id="submit">
+						</form>
+				</td>
 			</tr>
 		</c:forEach> 
 	</table>

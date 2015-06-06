@@ -14,9 +14,7 @@ import org.apache.derby.client.am.SqlException;
 
 import Managers.BooksManager;
 
-/**
- * Servlet implementation class AddBookServlet
- */
+
 @WebServlet({ "/AddBookServlet", "/addBook" })
 public class AddBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -24,26 +22,20 @@ public class AddBookServlet extends HttpServlet {
 	@Resource(name="jdbc/MyDB")
 	DataSource ds;
 	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
     public AddBookServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		getServletContext().getRequestDispatcher("/WEB-INF/addbook.jsp").forward(request, response);
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String url = request.getContextPath() + "/books";
