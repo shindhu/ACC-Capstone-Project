@@ -21,7 +21,6 @@ public class BooksManager {
 		this.ds = ds;
 	}
 
-
 	public ArrayList<Books> getBooks() throws SQLException {
 		ArrayList<Books> theBooks = new ArrayList<>();
 		Connection connection = null;
@@ -289,6 +288,7 @@ public class BooksManager {
 			ps.setString(4, b.getName());
 			ps.setString(5, b.getBook_format());
 			ps.setString(6, b.getNotes());
+			ps.setInt(7, b.getId());
 			
 			int updatedCount = ps.executeUpdate();
 			if(updatedCount >= 1) {

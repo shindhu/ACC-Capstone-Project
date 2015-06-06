@@ -151,8 +151,9 @@ public class CategoryManager {
 			connection = ds.getConnection();
 			PreparedStatement ps = connection.prepareStatement("update category set name=? where id=?");
 			ps.setString(1, c.getName());
+			ps.setInt(2, c.getId());
 			
-			ps.execute();
+			ps.executeUpdate();
 			updatedCategory = true;
 			
 			

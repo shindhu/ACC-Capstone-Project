@@ -33,63 +33,72 @@ public class EditBookServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
+		String url = "/WEB-INF/index.jsp";
+		ArrayList<Books> bookToEdit = null;
 		int id = new Integer(request.getParameter("id"));
-		
-		request.setAttribute("id", id);
 		BooksManager bm = new BooksManager(ds);
+	
 		try {
-			ArrayList<Books> bookToEdit = bm.getBookWithBookID(id);
-			request.setAttribute("book", bookToEdit);
-			String url = "/WEB-INF/editbook.jsp";
-			getServletContext().getRequestDispatcher(url).forward(request, response);
-			return;
+			bookToEdit =  bm.getBookWithBookID(id);
 			
 		} catch (SQLException e) {
-			
 			e.printStackTrace();
-			request.getRequestDispatcher("/WEB-INF/viewbooks.jsp").forward(request, response);
+			url = "/WEB-INF/dberror.jsp";
+			request.getRequestDispatcher(url).forward(request, response);
 			return;
 			
 		}
+		if (bookToEdit != null) {
+			request.setAttribute("book", bookToEdit);
+			System.out.println(bookToEdit);
+			url = "/WEB-INF/editbook.jsp";
+		}
+		getServletContext().getRequestDispatcher(url).forward(request, response);
 		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	   	
+	   String url= request.getContextPath() + "/viewBooks";
+	   boolean updateSuccedded = false;
+	   	   
 		int id= new Integer(request.getParameter("id"));
 		int category_id = new Integer(request.getParameter("category_id"));
 		//String category_id = request.getParameter("category_id");
 		String category_name = request.getParameter("category_name");
 		String image = request.getParameter("image");
 		String name = request.getParameter("name");
-		String book_format = request.getParameter("book_fromat");
+		String book_format = request.getParameter("book_format");
 		String notes = request.getParameter("notes");
 		
 		Books updatedBook = new Books(id, category_id, category_name, image, name, book_format, notes);
 		BooksManager bm = new BooksManager(ds);
 		
 		try {
-			if(bm.updateBook(updatedBook)) {
-				System.out.println("updated item is "+ updatedBook);
-				response.sendRedirect("/books");
-				return;
-			} else {
-				// if book didn't save, go to viewbooks page
-				System.out.println("Did not update" + updatedBook);
-				request.setAttribute("error_update", "book did not update in teh database! Try again");
-				request.getRequestDispatcher("/WEB-INF/viewbooks.jsp").forward(request, response);
+				updateSuccedded = bm.updateBook(updatedBook);
 				
-			}
-			
 		} catch (DBErrorException | SQLException e) {
 			e.printStackTrace();
-			getServletContext().getRequestDispatcher("/WEB-INF/viewbooks.jsp").forward(request, response);
+			
+		}
+		
+		if(updateSuccedded != true) {
+			request.setAttribute("error_update", "Book didn't update in the database! Try again");
+			url = "/WEB-INF/editBook?id" + id;
+			request.setAttribute("id", id);
+			request.setAttribute("category_id", category_id);
+			request.setAttribute("category_name", category_name);
+			request.setAttribute("image", image);
+			request.setAttribute("name", name);
+			request.setAttribute("book_format", book_format);
+			request.setAttribute("notes", notes);
+			
+			getServletContext().getRequestDispatcher(url).forward(request, response);
 			return;
 			
 		}
 		
+		response.sendRedirect(url);
 	}
 
 }

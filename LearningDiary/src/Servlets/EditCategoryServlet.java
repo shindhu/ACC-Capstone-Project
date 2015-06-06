@@ -35,10 +35,7 @@ public class EditCategoryServlet extends HttpServlet {
 		CategoryManager cm = new CategoryManager(ds);
 		Category category = null;
 		int id = new Integer(request.getParameter("id"));
-		
-		//String name = request.getParameter("name");
-		//request.setAttribute("id", idString);
-		
+	
 		try {
 			category = cm.getCategoryByID(id);
 			
