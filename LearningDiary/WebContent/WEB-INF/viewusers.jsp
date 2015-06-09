@@ -17,7 +17,7 @@
 			 <th>ID</th> 
 			<th>Users</th>
 			<th>Email</th>
-			<th>Edit/Del</th>
+			<!-- <th>Edit/Del</th> -->
 		</tr>
 		
 		 <c:forEach items="${user }" var="theUser">
@@ -25,7 +25,7 @@
 				<td>${theUser.id }</td>
 				<td>${theUser.username}</td>
 				<td>${theUser.email }</td>
-				<td>000</td>
+				<!-- <td>000</td> -->
 			</tr>
 		</c:forEach> 
 	</table>

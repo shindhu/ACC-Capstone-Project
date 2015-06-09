@@ -117,9 +117,25 @@ INSERT INTO BOOKS(CATEGORY_ID,CATEGORY_NAME, IMAGE, NAME, BOOK_FORMAT, NOTES) VA
 INSERT INTO BOOKS(CATEGORY_ID,CATEGORY_NAME, IMAGE, NAME, BOOK_FORMAT, NOTES) VALUES(6,'Other','http://ecx.images-amazon.com/images/I/51OiLCU-zyL._SY344_BO1,204,203,200_.jpg','What Alice Forgot','Kindle','Ultimately, Alice must discover whether forgetting is a blessing or a curse, and whether it’s possible to start over…');
 INSERT INTO BOOKS(CATEGORY_ID,CATEGORY_NAME, IMAGE, NAME, BOOK_FORMAT, NOTES) VALUES(6,'Other','http://ecx.images-amazon.com/images/I/51QuJvdTXfL._SY344_BO1,204,203,200_.jpg','Pinkalicious: Cherry Blossom','Kindle','Pinkalicious experiences a traditional Japanese cherry blossom celebration and learns to fly a kite with the help of a new friend.');
 
-SELECT * FROM BOOKS;
 
+select * from books;
+
+-- get books by book id
 select * from books where id=4;
+select book_format from books;
+
+-- get books by keyword
+select id, name, notes 
+from books
+where name like '%Financ%';
+
+select * from books where name like '%st%' or  notes like '%se%' or category_name like '%MON%';
+
+-- join 
+select * from category 
+join books
+using (category)
+
 
 -- to display the category name and count of books in each category
 select category.id,category.name, count(books.name) as bookcounts
@@ -127,26 +143,20 @@ from category, books
 where category.id = books.category_id
 group by category.id,category.name;
 
+-- to display the category name and count of books in each category and shows count as 0 if there is no book in oone of the category
 select category.id, category.name, count(books.category_id) as bookcounts
 from category left outer join books on category.id = books.category_id 
 group by category.id,category.name;
 
-
-
-
--- order books in asc
+-- order books in asc by name and id of the book
 select * from books order by name asc;
 select * from books order by id asc;
 
 -- update book
 update books set name='ghjijk' where id=56;
 
-
-
+-- books in alphabetical order according to category_id
 select * from books where category_id=2 order by name asc;
 
-
-select * from books where category_id = 2;
-select count(name) from books group by CATEGORY_id;
 
 

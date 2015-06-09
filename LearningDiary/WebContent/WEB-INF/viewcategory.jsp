@@ -8,13 +8,9 @@
 <body>
 
 	<c:import url="/WEB-INF/navbar.jsp"></c:import>
-
-	<div>
-		<a class="btn btn-lg" href="/LearningDiary/addCategory" style="color:blue">Add Category</a>
-		
-	</div>
 	
-	<div class="table-responsive" id="outerbody"  >
+	<div class="table-responsive" id="outerbody_table"  >
+	<a class="btn btn-lg" href="/LearningDiary/addCategory" style="color:blue">Add Category</a>
 	<table class="table table-hover">
 		<tr>
 			 <th>ID</th> 

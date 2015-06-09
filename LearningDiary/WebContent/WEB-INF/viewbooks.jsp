@@ -9,12 +9,8 @@
 <body>
 	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 
-	<div>
+	<div class="table-responsive" id="outerbody_table">
 		<a class="btn btn-lg" href="/LearningDiary/addBook" style="color:blue">Add Book</a>
-	</div>
-	
-	<div class="table-responsive" id="outerbody">
-		
 		<!-- its optional to have the select books by id and name
 		<form action="/LearningDiary/books" method="get">
 			<select name="order">

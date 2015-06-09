@@ -25,6 +25,20 @@ public class Books {
 	
 	
 	
+	public Books(int id, String category_name, String image, String name,
+			String book_format, String notes) {
+		
+		this.id = id;
+		this.category_name = category_name;
+		this.image = image;
+		this.name = name;
+		this.book_format = book_format;
+		this.notes = notes;
+		
+	}
+
+
+
 	public String getCategory_name() {
 		return category_name;
 	}
@@ -74,8 +88,6 @@ public class Books {
 		this.notes = notes;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "Books [id=" + id + ", category_id=" + category_id
@@ -84,6 +96,23 @@ public class Books {
 				+ ", notes=" + notes + "]";
 	}
 
-
+	public String getLowerName()
+	{
+		String theName = this.name.toLowerCase();
+		return theName;
+		
+	}
 	
+	public String getLowerNotes()
+	{
+		String theNotes = this.notes.toLowerCase();
+		return theNotes;
+		
+	}
+	
+	public String getLowerCategory_name()
+	{
+		String theCategory_name = this.category_name .toLowerCase();
+		return theCategory_name;
+	}
 }

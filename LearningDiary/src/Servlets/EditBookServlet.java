@@ -34,13 +34,12 @@ public class EditBookServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String url = "/WEB-INF/index.jsp";
-		ArrayList<Books> bookToEdit = null;
+		Books bookToEdit = null;
 		int id = new Integer(request.getParameter("id"));
 		BooksManager bm = new BooksManager(ds);
-	
 		try {
 			bookToEdit =  bm.getBookWithBookID(id);
-			
+			System.out.println(bookToEdit.getClass());
 		} catch (SQLException e) {
 			e.printStackTrace();
 			url = "/WEB-INF/dberror.jsp";
@@ -50,7 +49,7 @@ public class EditBookServlet extends HttpServlet {
 		}
 		if (bookToEdit != null) {
 			request.setAttribute("book", bookToEdit);
-			System.out.println(bookToEdit);
+			System.out.println("Book to Edit is: "+bookToEdit);
 			url = "/WEB-INF/editbook.jsp";
 		}
 		getServletContext().getRequestDispatcher(url).forward(request, response);
@@ -79,7 +78,7 @@ public class EditBookServlet extends HttpServlet {
 				
 		} catch (DBErrorException | SQLException e) {
 			e.printStackTrace();
-			
+			//getServletContext().getRequestDispatcher(url).forward(request, response);
 		}
 		
 		if(updateSuccedded != true) {
@@ -96,9 +95,10 @@ public class EditBookServlet extends HttpServlet {
 			getServletContext().getRequestDispatcher(url).forward(request, response);
 			return;
 			
-		}
+		} 
 		
-		response.sendRedirect(url);
+		
+		response.sendRedirect("/LearningDiary/books");
 	}
 
 }

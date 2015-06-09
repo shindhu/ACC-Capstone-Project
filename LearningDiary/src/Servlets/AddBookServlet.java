@@ -1,6 +1,8 @@
 package Servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -12,7 +14,9 @@ import javax.sql.DataSource;
 
 import org.apache.derby.client.am.SqlException;
 
+import Domain.Category;
 import Managers.BooksManager;
+import Managers.CategoryManager;
 
 
 @WebServlet({ "/AddBookServlet", "/addBook" })
@@ -22,16 +26,24 @@ public class AddBookServlet extends HttpServlet {
 	@Resource(name="jdbc/MyDB")
 	DataSource ds;
 	
-    
     public AddBookServlet() {
         super();
         
     }
-
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		getServletContext().getRequestDispatcher("/WEB-INF/addbook.jsp").forward(request, response);
+		ArrayList<Category> categoryList = null;
+		CategoryManager cm = new CategoryManager(ds);
+		try {
+			categoryList = cm.getCategory();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("category", categoryList);
 		
 	}
 

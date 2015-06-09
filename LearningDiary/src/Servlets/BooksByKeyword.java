@@ -30,19 +30,30 @@ public class BooksByKeyword extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//HttpSession mySession = request.getSession();
+		String url = "/WEB-INF/index.jsp";
+		List<Books> filteredBooks = new ArrayList<>();
 		BooksManager bm = new BooksManager(ds);
-		
-		List<Books> theBooks = new ArrayList<>();
-		//List<Books> filteredBooks = new ArrayList<>();
-		
+		Books b = null;
+		String theKeyword = null;
+		String category_name  = request.getParameter(b.getLowerCategory_name());
+		String name = request.getParameter(b.getLowerName());
+		String notes = request.getParameter(b.getLowerNotes());
 		
 		try {
-			theBooks = bm.getBooks();
-		
+			theKeyword = request.getParameter("search");
+			if(theKeyword != null) {
+				filteredBooks = bm.getBooksByKeyword(category_name, name, notes);
+				System.out.println(filteredBooks);
+				request.setAttribute("theFilteredBook", filteredBooks);
+				url="/WEB-INF/booksbykeyword.jsp";
+				getServletContext().getRequestDispatcher(url).forward(request, response);
+				
+			} 
+				
 		} catch (SQLException e) {
-			
 			e.printStackTrace();
+			getServletContext().getRequestDispatcher("/WEB-INF/dberror.jsp").forward(request, response);
+			
 		}
 		
 	}

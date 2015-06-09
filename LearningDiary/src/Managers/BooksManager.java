@@ -1,10 +1,13 @@
 package Managers;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.apache.derby.client.am.SqlException;
@@ -123,40 +126,45 @@ public class BooksManager {
 	}
 	
 	
-//	public List<Books> getBooksByKeyword(String search) throws IOException, SQLException {
-//		
-//		List<Books> theBooks = getBooks();
-//		List<Books> filteredBooks = new ArrayList<>();
-//		String searchKeyword = null;
-//		
-//		Connection connection = null;
-//
-//		try {
-//
-//			connection = ds.getConnection();
-//			PreparedStatement ps = connection
-//					.prepareStatement("select category_name, name, book_format, notes from books");
-//			ResultSet resultSet = ps.executeQuery();
-//
-//			while (resultSet.next()) {
-//				
-//				
-//			}
-//		for(Books filterBooks: theBooks) {
-//			if(searchKeyword != null) {
-//				
-//				
-//			}
-//		
-//		return filteredBooks;
-//		
-//			
-//	}
+	public List<Books> getBooksByKeyword(String theCategory_name, String theName, String theNotes) throws IOException, SQLException {
+		
+		List<Books> theFilteredBooks = new ArrayList<Books>();
+		Connection connection = null;
+
+		try {
+
+			connection = ds.getConnection();
+			PreparedStatement ps = connection
+					.prepareStatement("select id, category_name, image, name, book_format, notes from books where category_name like ? or name like ? or notes like ?");
+			ps.setString(1, "%" + theCategory_name + "%");
+			ps.setString(2, "%" + theName + "%");
+			ps.setString(3, "%" + theNotes + "%");
+			
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				theFilteredBooks.add(new Books(resultSet.getInt("id"),
+											resultSet.getString("category_name"),
+											resultSet.getString("image"),
+											resultSet.getString("name"),
+											resultSet.getString("book_fromat"),
+											resultSet.getString("notes") ));
+			}
+			resultSet.close();
+			ps.close();
+			connection.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return theFilteredBooks;
+	}
 
 	// get books using id of it 
-	public ArrayList<Books> getBookWithBookID (int theID) throws SQLException {
+	public Books getBookWithBookID (int theID) throws SQLException {
 		
-		ArrayList<Books> bookByBookID = new ArrayList<>();
+		Books bookByBookID = null;
 		Connection connection = null;
 		
 		try {
@@ -174,8 +182,8 @@ public class BooksManager {
 				String book_formatString = resultSet.getString("book_format");
 				String notesString = resultSet.getString("notes");
 				
-				bookByBookID.add(new Books(idString, category_idString, category_nameString, 
-						imageString, nameString, book_formatString, notesString));
+				bookByBookID = new Books(idString, category_idString, category_nameString, 
+						imageString, nameString, book_formatString, notesString);
 				
 			}
 			

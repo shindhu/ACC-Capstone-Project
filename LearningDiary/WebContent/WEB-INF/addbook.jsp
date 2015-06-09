@@ -1,16 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
 <html>
 <head>
-<title>Add Book</title>
+<title>LaerningDiary:AddBook</title>
 <%@ include file="/WEB-INF/common-css-javascript.html"%>
 
 </head>
 <body >
 	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 	
-	<div id="outerbody"> <!-- class="col-md-offset-1 col-md-8" -->
+	<div id="outerbody"> 
 	<h2 style="text-align: left; color:blue">Add Book</h2>
 	
 		<form action="addBook" method = "post">
@@ -20,10 +19,16 @@
 				<label>Category ID</label>
 				<input class="form-control" style="width:500px" type="text" name="category_id" value="${book.category_id }" required placeholder="Category ID"><br>
 			</div>
-			
+		
 			<div class="from-group">	
-				<label>Category Name</label>
-				<input class="form-control" style="width:500px" type="text" name="category_name" value="${book.category_name }" required placeholder="Category Name"><br>
+				<label>Category Name</label><br>
+				<%-- <input class="form-control" style="width:500px" type="text" name="category_name" value="${book.category_name }" required placeholder="Category Name"><br> --%>
+					<form action="/LearningDiary/books" method="get">
+						<select name="CategoryList" >
+							<option value="${booksList.category_name }">${booksList.category_name  }</option>
+							
+						</select>
+					</form>	
 			</div>
 			
 			<div class="from-group">	

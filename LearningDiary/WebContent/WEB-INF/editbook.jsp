@@ -19,11 +19,13 @@
 			<div class="form-group">
 				<label>ID</label>
 				<input class="form-control" style="width:500px" type="text" name="id" value="${book.id }" readonly><br>
+				
 			</div>
 			
 			<div class="form-group">
 				<label>Category ID</label>
 				<input class="form-control" style="width:500px" type="text" name="category_id" value="${book.category_id }" readonly><br>
+				
 			</div>
 			
 			<div class="from-group">	
@@ -48,7 +50,7 @@
 			
 			<div class="from-group">	
 				<label>Notes</label>
-				<textarea class="form-control" rows="8"  name="notes" value="${book.notes }" ></textarea><br>
+				<textarea class="form-control" rows="8"  name="notes" > ${book.notes }</textarea><br>
 			</div>
 			
 			<label>&nbsp; </label>
