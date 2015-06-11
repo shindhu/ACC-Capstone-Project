@@ -43,13 +43,14 @@ public class DeleteCategoryServlet extends HttpServlet {
     	
     	if(updateSucceeded != true) {
     		request.setAttribute("error", "Delete of databse record failed");
-    		url = "WEB-INF/category";
+    		url = "/WEB-INF/viewcategory.jsp";
     		
     		getServletContext().getRequestDispatcher(url).forward(request, response);
     		
-    	}
+    	} else {
     	
-    	response.sendRedirect(url);
+    		response.sendRedirect(url);
+    	}
 	}
 
 }

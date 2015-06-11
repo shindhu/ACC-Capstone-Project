@@ -23,12 +23,10 @@ public class LoginServlet extends HttpServlet {
 	@Resource(name="jdbc/MyDB")
 	DataSource ds;
 	
-   
     public LoginServlet() {
         super();
         
     }
-
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -38,7 +36,6 @@ public class LoginServlet extends HttpServlet {
 		doGet(request, response);
 		
 	}
-
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -78,8 +75,10 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("id", theFoundUser.getId());
 				request.setAttribute("email", theFoundUser.getEmail());
 				
-				url = "/WEB-INF/main.jsp";
-				
+				url = "/WEB-INF/viewcategory.jsp";
+				response.sendRedirect("/LearningDiary/category");
+				return;
+			
 			} else {
 				request.setAttribute("error", "The username or password was incorrect! ");
 				url = "/WEB-INF/login.jsp";
