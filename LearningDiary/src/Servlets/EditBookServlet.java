@@ -16,8 +16,10 @@ import javax.sql.DataSource;
 import org.apache.derby.client.am.SqlException;
 
 import Domain.Books;
+import Domain.Category;
 import Exceptions.DBErrorException;
 import Managers.BooksManager;
+import Managers.CategoryManager;
 
 @WebServlet({ "/EditBookServlet", "/editBook" })
 public class EditBookServlet extends HttpServlet {
@@ -37,9 +39,13 @@ public class EditBookServlet extends HttpServlet {
 		Books bookToEdit = null;
 		int id = new Integer(request.getParameter("id"));
 		BooksManager bm = new BooksManager(ds);
+		ArrayList<Category> categoryList = new ArrayList<>();
+		CategoryManager cm = new CategoryManager(ds);
+		
 		try {
 			bookToEdit =  bm.getBookWithBookID(id);
 			System.out.println(bookToEdit.getClass());
+			categoryList = cm.getCategory();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			url = "/WEB-INF/dberror.jsp";
@@ -50,6 +56,7 @@ public class EditBookServlet extends HttpServlet {
 		if (bookToEdit != null) {
 			request.setAttribute("book", bookToEdit);
 			System.out.println("Book to Edit is: "+bookToEdit);
+			request.setAttribute("categories", categoryList);
 			url = "/WEB-INF/editbook.jsp";
 		}
 		getServletContext().getRequestDispatcher(url).forward(request, response);
@@ -64,13 +71,12 @@ public class EditBookServlet extends HttpServlet {
 		int id= new Integer(request.getParameter("id"));
 		int category_id = new Integer(request.getParameter("category_id"));
 		//String category_id = request.getParameter("category_id");
-		String category_name = request.getParameter("category_name");
 		String image = request.getParameter("image");
 		String name = request.getParameter("name");
 		String book_format = request.getParameter("book_format");
 		String notes = request.getParameter("notes");
 		
-		Books updatedBook = new Books(id, category_id, category_name, image, name, book_format, notes);
+		Books updatedBook = new Books(id, category_id, image, name, book_format, notes);
 		BooksManager bm = new BooksManager(ds);
 		
 		try {
@@ -86,7 +92,6 @@ public class EditBookServlet extends HttpServlet {
 			url = "/WEB-INF/editBook?id" + id;
 			request.setAttribute("id", id);
 			request.setAttribute("category_id", category_id);
-			request.setAttribute("category_name", category_name);
 			request.setAttribute("image", image);
 			request.setAttribute("name", name);
 			request.setAttribute("book_format", book_format);

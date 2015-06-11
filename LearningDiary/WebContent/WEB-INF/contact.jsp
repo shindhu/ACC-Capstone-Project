@@ -8,12 +8,16 @@
 
 
 </head>
-<body>
+<body id="body_layout">
 
 	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 	
 	<div id="outerbody">
 		Contact us
+	</div>
+	
+	<div>
+	<%@ include file="/WEB-INF/footer.jsp" %>
 	</div>
 	
 </body>

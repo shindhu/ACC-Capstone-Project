@@ -32,14 +32,13 @@ public class BooksManager {
 
 			connection = ds.getConnection();
 			PreparedStatement ps = connection
-					.prepareStatement("select id,category_id,category_name, image, name, book_format, notes from books");
+					.prepareStatement("select id, category_id, image, name, book_format, notes from books");
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {
 
 				theBooks.add(new Books(resultSet.getInt("id"),
 										resultSet.getInt("category_id"),
-										resultSet.getString("category_name"),
 										resultSet.getString("image"),
 										resultSet.getString("name"),
 										resultSet.getString("book_format"),
@@ -66,14 +65,13 @@ public class BooksManager {
 
 			connection = ds.getConnection();
 			PreparedStatement ps = connection
-					.prepareStatement("select id,category_id,category_name, image, name, book_format, notes from books order by id asc");
+					.prepareStatement("select id,category_id, image, name, book_format, notes from books order by id asc");
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {
 
 				theBooksOrderByID.add(new Books(resultSet.getInt("id"),
 										resultSet.getInt("category_id"),
-										resultSet.getString("category_name"),
 										resultSet.getString("image"),
 										resultSet.getString("name"),
 										resultSet.getString("book_format"),
@@ -100,14 +98,13 @@ public class BooksManager {
 
 			connection = ds.getConnection();
 			PreparedStatement ps = connection
-					.prepareStatement("select id,category_id,category_name, image, name, book_format, notes from books order by name asc");
+					.prepareStatement("select id,category_id, image, name, book_format, notes from books order by name asc");
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {
 
 				theBooksOrderByName.add(new Books(resultSet.getInt("id"),
 										resultSet.getInt("category_id"),
-										resultSet.getString("category_name"),
 										resultSet.getString("image"),
 										resultSet.getString("name"),
 										resultSet.getString("book_format"),
@@ -126,7 +123,7 @@ public class BooksManager {
 	}
 	
 	
-	public List<Books> getBooksByKeyword(String theCategory_name, String theName, String theNotes) throws IOException, SQLException {
+	public List<Books> getBooksByKeyword( String theName, String theNotes) throws IOException, SQLException {
 		
 		List<Books> theFilteredBooks = new ArrayList<Books>();
 		Connection connection = null;
@@ -135,16 +132,14 @@ public class BooksManager {
 
 			connection = ds.getConnection();
 			PreparedStatement ps = connection
-					.prepareStatement("select id, category_name, image, name, book_format, notes from books where category_name like ? or name like ? or notes like ?");
-			ps.setString(1, "%" + theCategory_name + "%");
-			ps.setString(2, "%" + theName + "%");
-			ps.setString(3, "%" + theNotes + "%");
+					.prepareStatement("select id, image, name, book_format, notes from books where  name like ? or notes like ?");
+			ps.setString(1, "%" + theName + "%");
+			ps.setString(2, "%" + theNotes + "%");
 			
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {
 				theFilteredBooks.add(new Books(resultSet.getInt("id"),
-											resultSet.getString("category_name"),
 											resultSet.getString("image"),
 											resultSet.getString("name"),
 											resultSet.getString("book_fromat"),
@@ -169,20 +164,19 @@ public class BooksManager {
 		
 		try {
 			connection = ds.getConnection();
-			PreparedStatement ps = connection.prepareStatement("select id, category_id, category_name, image, name, book_format, notes from books where id=? ");
+			PreparedStatement ps = connection.prepareStatement("select id, category_id, image, name, book_format, notes from books where id=? ");
 			ps.setInt(1, theID);
 			ResultSet resultSet = ps.executeQuery();
 
 			while(resultSet.next()) {
 				int idString = resultSet.getInt("id");
 				int category_idString = resultSet.getInt("category_id");
-				String category_nameString = resultSet.getString("category_name");
 				String imageString = resultSet.getString("image");
 				String nameString = resultSet.getString("name");
 				String book_formatString = resultSet.getString("book_format");
 				String notesString = resultSet.getString("notes");
 				
-				bookByBookID = new Books(idString, category_idString, category_nameString, 
+				bookByBookID = new Books(idString, category_idString, 
 						imageString, nameString, book_formatString, notesString);
 				
 			}
@@ -206,20 +200,19 @@ public class BooksManager {
 		
 		try {
 			connection = ds.getConnection();
-			PreparedStatement ps = connection.prepareStatement("select id, category_id, category_name, image, name, book_format, notes from books where category_id = ? ");
+			PreparedStatement ps = connection.prepareStatement("select id, category_id,  image, name, book_format, notes from books where category_id = ? ");
 			ps.setInt(1, theID);
 			ResultSet resultSet = ps.executeQuery();
 
 			while(resultSet.next()) {
 				int idString = resultSet.getInt("id");
 				int category_idString = resultSet.getInt("category_id");
-				String category_nameString = resultSet.getString("category_name");
 				String imageString = resultSet.getString("image");
 				String nameString = resultSet.getString("name");
 				String book_formatString = resultSet.getString("book_format");
 				String notesString = resultSet.getString("notes");
 				
-				booksByID.add(new Books(idString, category_idString, category_nameString, 
+				booksByID.add(new Books(idString, category_idString, 
 						imageString, nameString, book_formatString, notesString));
 				
 			}
@@ -237,7 +230,7 @@ public class BooksManager {
 	}
 	
 	// add book in the database
-	public boolean addBook(int category_id,String category_name,String image,String name, String book_format, String notes) throws SqlException {
+	public boolean addBook(int category_id, String image,String name, String book_format, String notes) throws SqlException {
 		
 		boolean addedBook = false;
 		Connection connection = null;
@@ -245,15 +238,14 @@ public class BooksManager {
 		try {
 			connection = ds.getConnection();
 			
-			String theQueryString = "INSERT INTO BOOKS(CATEGORY_ID,CATEGORY_NAME, IMAGE, NAME, BOOK_FORMAT, NOTES) VALUES(?,?,?,?,?,?)";
+			String theQueryString = "INSERT INTO BOOKS(CATEGORY_ID, IMAGE, NAME, BOOK_FORMAT, NOTES) VALUES(?,?,?,?,?)";
 			
 			PreparedStatement ps = connection.prepareStatement(theQueryString);
 			ps.setInt(1, category_id);
-			ps.setString(2, category_name);
-			ps.setString(3, image);
-			ps.setString(4, name);
-			ps.setString(5, book_format);
-			ps.setString(6, notes);
+			ps.setString(2, image);
+			ps.setString(3, name);
+			ps.setString(4, book_format);
+			ps.setString(5, notes);
 			
 			int theUpdatedCount = ps.executeUpdate();
 			if (theUpdatedCount >= 1) {
@@ -287,16 +279,15 @@ public class BooksManager {
 		try {
 			connection = ds.getConnection();
 			
-			String theQueryString = "update books set category_id=?, category_name=?, image=?, name=?, book_format=?, notes=? where id=?";
+			String theQueryString = "update books set category_id=?,  image=?, name=?, book_format=?, notes=? where id=?";
 			
 			PreparedStatement ps = connection.prepareStatement(theQueryString);
 			ps.setInt(1, b.getCategory_id());
-			ps.setString(2, b.getCategory_name());
-			ps.setString(3, b.getImage());
-			ps.setString(4, b.getName());
-			ps.setString(5, b.getBook_format());
-			ps.setString(6, b.getNotes());
-			ps.setInt(7, b.getId());
+			ps.setString(2, b.getImage());
+			ps.setString(3, b.getName());
+			ps.setString(4, b.getBook_format());
+			ps.setString(5, b.getNotes());
+			ps.setInt(6, b.getId());
 			
 			int updatedCount = ps.executeUpdate();
 			if(updatedCount >= 1) {

@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 
 import org.apache.derby.client.am.SqlException;
 
+import Domain.Books;
 import Domain.Category;
 import Managers.BooksManager;
 import Managers.CategoryManager;
@@ -33,35 +34,31 @@ public class AddBookServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		getServletContext().getRequestDispatcher("/WEB-INF/addbook.jsp").forward(request, response);
-		ArrayList<Category> categoryList = null;
+		ArrayList<Category> categoryList = new ArrayList<>();
 		CategoryManager cm = new CategoryManager(ds);
 		try {
 			categoryList = cm.getCategory();
-			
+			request.setAttribute("categories", categoryList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		request.setAttribute("category", categoryList);
+		getServletContext().getRequestDispatcher("/WEB-INF/addbook.jsp").forward(request, response);
 		
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String url = request.getContextPath() + "/books";
 		boolean addedBook = false;
 		
 		int category_id = new Integer( request.getParameter("category_id"));
-		String category_name = request.getParameter("category_name");
 		String image = request.getParameter("image");
 		String name = request.getParameter("name");
 		String book_format = request.getParameter("book_format");
 		String notes = request.getParameter("notes");
 		
 		try {
-			addedBook = new BooksManager(ds).addBook(category_id, category_name, image, name, book_format, notes);
+			addedBook = new BooksManager(ds).addBook(category_id, image, name, book_format, notes);
 		} catch(SqlException e) {
 			e.printStackTrace();
 		}
@@ -70,7 +67,6 @@ public class AddBookServlet extends HttpServlet {
 			request.setAttribute("error", "database failed to update the book");
 			url = "/WEB-INF/addBook";
 			request.setAttribute("category_id", category_id);
-			request.setAttribute("category_name", category_name);
 			request.setAttribute("image", image);
 			request.setAttribute("name", name);
 			request.setAttribute("book_format", book_format);

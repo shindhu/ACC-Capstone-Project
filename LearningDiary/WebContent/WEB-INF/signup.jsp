@@ -6,16 +6,17 @@
 <%@ include file="/WEB-INF/common-css-javascript.html"%>
 
 </head>
-<body>
+<body id="body_layout">
 	<c:import url="/WEB-INF/navbar.jsp" />
 
 	<div id="outerbody">
 		<h3 style="text-align: left; color: blue;">Sign Up</h3>
 
+		<p style="color:red">${error }</p>
+		<p style="color:red">${error_username }</p>
 		<form  action="SignupServlet" method="post">
 			<input type="hidden" name="action" value="signup">
-			${error }
-			${error_username }
+			
 			<div class="form-group">
 				<label>Username:</label> <input class="form-control"
 					style="width: 300px" type="text" name="username" required
@@ -45,6 +46,10 @@
 					type="submit" value="Sign Up" id="submit">
 			</div>
 		</form>
+	</div>
+	
+	<div>
+	<%@ include file="/WEB-INF/footer.jsp" %>
 	</div>
 </body>
 </html>

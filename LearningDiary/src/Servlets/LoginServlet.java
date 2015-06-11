@@ -78,7 +78,7 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("id", theFoundUser.getId());
 				request.setAttribute("email", theFoundUser.getEmail());
 				
-				url = "/WEB-INF/index.jsp";
+				url = "/WEB-INF/main.jsp";
 				
 			} else {
 				request.setAttribute("error", "The username or password was incorrect! ");

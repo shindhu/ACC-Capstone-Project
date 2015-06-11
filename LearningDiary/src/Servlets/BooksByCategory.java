@@ -1,6 +1,7 @@
 package Servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
@@ -14,8 +15,10 @@ import javax.sql.DataSource;
 import org.apache.derby.client.am.SqlException;
 
 import Domain.Books;
+import Domain.Category;
 import Exceptions.DBErrorException;
 import Managers.BooksManager;
+import Managers.CategoryManager;
 
 /**
  * Servlet implementation class BooksByCategory
@@ -47,15 +50,21 @@ public class BooksByCategory extends HttpServlet {
 		int id = new Integer(request.getParameter("id"));
 		
 		BooksManager bm = new BooksManager(ds);
+		CategoryManager cm = new CategoryManager(ds);
+		
 		ArrayList<Books> booksByCategory = null;
+		Category listOfCategories = null;
 		try {
 			booksByCategory = bm.getBookByID(id);
-		} catch (SqlException | DBErrorException e) {
-			// TODO Auto-generated catch block
+			listOfCategories = cm.getCategoryByID(id);
+			
+		} catch ( DBErrorException | SQLException |SqlException e) {
 			e.printStackTrace();
-		}
+			
+		} 
 		
 		request.setAttribute("theBooksByCategory",booksByCategory);
+		request.setAttribute("categories", listOfCategories);
 		url = "/WEB-INF/booksbycategory.jsp";
 		System.out.println(booksByCategory);
 				

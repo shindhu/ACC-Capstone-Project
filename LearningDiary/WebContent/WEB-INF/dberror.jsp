@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/common-css-javascript.html"%>
 
 </head>
-<body>
+<body id="body_layout">
 
 	<c:import url = "navbar.jsp"> </c:import>
 	

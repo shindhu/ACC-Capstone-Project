@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/common-css-javascript.html"%>
 
 </head>
-<body>
+<body id="body_layout">
 
 	<c:import url="/WEB-INF/navbar.jsp">
 	</c:import>
@@ -26,5 +26,8 @@
 		</p>
 	</div>
 
+	<div>
+	<%@ include file="/WEB-INF/footer.jsp" %>
+	</div>
 </body>
 </html>

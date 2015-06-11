@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/common-css-javascript.html"%>
 
 </head>
-<body>
+<body id="body_layout">
 	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 	
 	<div id="outerbody"> <!-- class="col-md-offset-1 col-md-8" -->

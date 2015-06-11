@@ -8,7 +8,7 @@
 
 
 </head>
-<body>
+<body id="body_layout">
 
 	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 	
@@ -16,5 +16,8 @@
 		LearningDiary is cool.
 	</div>
 	
+	<div>
+	<%@ include file="/WEB-INF/footer.jsp" %>
+	</div>
 </body>
 </html>

@@ -26,7 +26,7 @@ public class LogoutServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("isLoggedIn", false);
 		
-		getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 		return;
 			
 	}

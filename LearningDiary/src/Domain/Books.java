@@ -4,19 +4,17 @@ public class Books {
 	
 	int id;
 	int category_id;
-	String category_name;
 	String image;
 	String name;
 	String book_format;
 	String notes;
 	
 	
-	public Books(int id, int category_id, String category_name, String image,
+	public Books(int id, int category_id,  String image,
 			String name, String book_format, String notes) {
 		super();
 		this.id = id;
 		this.category_id = category_id;
-		this.category_name = category_name;
 		this.image = image;
 		this.name = name;
 		this.book_format = book_format;
@@ -25,31 +23,16 @@ public class Books {
 	
 	
 	
-	public Books(int id, String category_name, String image, String name,
+	public Books(int id,  String image, String name,
 			String book_format, String notes) {
 		
 		this.id = id;
-		this.category_name = category_name;
 		this.image = image;
 		this.name = name;
 		this.book_format = book_format;
 		this.notes = notes;
 		
 	}
-
-
-
-	public String getCategory_name() {
-		return category_name;
-	}
-
-
-
-	public void setCategory_name(String category_name) {
-		this.category_name = category_name;
-	}
-
-
 
 	public int getId() {
 		return id;
@@ -90,9 +73,8 @@ public class Books {
 
 	@Override
 	public String toString() {
-		return "Books [id=" + id + ", category_id=" + category_id
-				+ ", category_name=" + category_name + ", image=" + image
-				+ ", name=" + name + ", book_format=" + book_format
+		return "Books [id=" + id + ", category_id=" + category_id + ", image="
+				+ image + ", name=" + name + ", book_format=" + book_format
 				+ ", notes=" + notes + "]";
 	}
 
@@ -110,9 +92,4 @@ public class Books {
 		
 	}
 	
-	public String getLowerCategory_name()
-	{
-		String theCategory_name = this.category_name .toLowerCase();
-		return theCategory_name;
-	}
 }

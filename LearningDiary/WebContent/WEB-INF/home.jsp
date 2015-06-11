@@ -8,7 +8,7 @@
 
 
 </head>
-<body>
+<body id="body_layout">
 
 	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 	

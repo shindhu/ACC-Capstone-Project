@@ -6,7 +6,7 @@
 <%@ include file="/WEB-INF/common-css-javascript.html"%>
 
 </head>
-<body >
+<body id="body_layout">
 	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 	
 	<div id="outerbody"> 
@@ -15,22 +15,32 @@
 		<form action="addBook" method = "post">
 			<input type="hidden" name="action" value="add-book">
 			
-			<div class="form-group">
-				<label>Category ID</label>
-				<input class="form-control" style="width:500px" type="text" name="category_id" value="${book.category_id }" required placeholder="Category ID"><br>
-			</div>
-		
-			<div class="from-group">	
-				<label>Category Name</label><br>
-				<%-- <input class="form-control" style="width:500px" type="text" name="category_name" value="${book.category_name }" required placeholder="Category Name"><br> --%>
-					<form action="/LearningDiary/books" method="get">
-						<select name="CategoryList" >
-							<option value="${booksList.category_name }">${booksList.category_name  }</option>
-							
-						</select>
-					</form>	
+			 <div class="form-group">
+				<label>Category ID</label><br>
+				<%-- <input class="form-control" style="width:500px" type="text" name="category_id" value="${book.category_id }" required placeholder="Category ID"><br> --%>
+				 <select name="category_id"> 
+					<c:forEach items="${categories}" var="category">
+						<option value="${category.id}"> ${category.id}.  ${category.name}</option>
+					</c:forEach>
+				</select> 
+				
 			</div>
 			
+			<%-- <div class="from-group">
+				<label>Select Category Name</label><br>
+				<input class="form-control" style="width:500px" type="text" name="category_name" value="${book.category_name }" required placeholder="Category Name"><br>
+				
+				<c:out value="${categories}"></c:out>	
+				
+					 <select name="category_id"> 
+						<c:forEach items="${categories}" var="category">
+							<option value="${category.id}">
+							${category.id}.  ${category.name}</option>
+						</c:forEach>
+					 </select> 
+				
+			</div> --%>
+
 			<div class="from-group">	
 				<label>Image</label>
 				<input class="form-control" style="width:500px" type="text" name="image" value="${book.image }" placeholder="Paste the book image link from your browser"><br>
@@ -48,7 +58,7 @@
 			
 			<div class="from-group">	
 				<label>Notes</label>
-				<textarea class="form-control" rows="8"  name="notes" value="${book.notes }" placeholder="Your Notes"></textarea><br>
+				<textarea class="form-control" rows="10"  name="notes" value="${book.notes }" placeholder="Your Notes"></textarea><br>
 			</div>
 			
 			<label>&nbsp; </label>

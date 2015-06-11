@@ -20,7 +20,7 @@ public class CategoryManager {
 	}
 
 	public ArrayList<Category> getCategory() throws SQLException {
-		ArrayList<Category> theCategory = new ArrayList<>();
+		ArrayList<Category> theCategory = new ArrayList<Category>();
 		Connection connection = null;
 
 		try {
@@ -32,8 +32,8 @@ public class CategoryManager {
 
 			while (resultSet.next()) {
 
-				theCategory.add(new Category(resultSet.getInt("id"), resultSet
-						.getString("name")));
+				theCategory.add( new Category(resultSet.getInt("id"), resultSet
+						.getString("name")) );
 			}
 
 			resultSet.close();

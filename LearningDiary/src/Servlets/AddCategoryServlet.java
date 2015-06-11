@@ -20,17 +20,14 @@ public class AddCategoryServlet extends HttpServlet {
 	@Resource(name="jdbc/MyDB")
 	DataSource ds;
 	
-
     public AddCategoryServlet() {
         super();
         
     }
-
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		getServletContext().getRequestDispatcher("/WEB-INF/addcategory.jsp").forward(request, response);
 	}
-
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
