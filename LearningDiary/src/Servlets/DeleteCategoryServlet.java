@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import javax.websocket.SendResult;
 
 import Managers.CategoryManager;
 
@@ -35,17 +36,20 @@ public class DeleteCategoryServlet extends HttpServlet {
     	int id = new Integer(request.getParameter("id"));
     	
     	try {
-    		updateSucceeded = new CategoryManager(ds).deleteCategoryWithID(id);
-    		
-    	} catch(SQLException e) {
+    			updateSucceeded = new CategoryManager(ds).deleteCategoryWithID(id);
+    			
+    		} catch(SQLException e) {
     		e.printStackTrace();
     	}
     	
     	if(updateSucceeded != true) {
-    		request.setAttribute("error", "Delete of databse record failed");
+    		
     		url = "/WEB-INF/viewcategory.jsp";
+    		//response.sendRedirect("/LearningDiary/category");
+    		request.setAttribute("error_delete", "OOOPS You have books in Category.. Before deleting category delete or move ur books to different category!!");
     		
     		getServletContext().getRequestDispatcher(url).forward(request, response);
+    		return;
     		
     	} else {
     	

@@ -15,8 +15,9 @@
 	<table class="table table-hover" style="width:40%">
 		<tr>
 			 <th style="width:15%">ID</th> 
-			<th style="width:20%; text-align: left">Users</th>
+			<th style="width:10%; text-align: left">Users</th>
 			<th style="width:15%">Email</th>
+			<th style="width: 10%">Delete</th>
 			<!-- <th>Edit/Del</th> -->
 		</tr>
 		
@@ -25,7 +26,8 @@
 				<td>${theUser.id }</td>
 				<td style="text-align: left">${theUser.username}</td>
 				<td style="text-align: left">${theUser.email }</td>
-				<!-- <td>000</td> -->
+				<td><a class="btn btn-danger btn-md"
+						href="?id=${theUser.id }"> Delete </a></td>
 			</tr>
 		</c:forEach> 
 	</table>

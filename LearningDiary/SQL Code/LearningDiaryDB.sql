@@ -128,7 +128,12 @@ select book_format from books;
 -- get books by keyword
 select id, name, notes 
 from books
-where name like '%Financ%';
+where name ilike '%Financ%';
+
+select lower(name), lower(notes) from books;
+
+where upper(name) like upper('%fin%');
+
 
 select * from books where name like '%st%' or  notes like '%se%';
 
