@@ -31,6 +31,7 @@
 				<td>
 						<form action="deleteUserBook" method="post">
 							<input type="hidden" name="id" value="${theUserBook.id }">
+							<input type="hidden" name="user_id" value="${theUserBook.user_id }">
 							<input class="btn btn-danger btn-sm" type="submit" value="Delete" id="submit">
 						</form>
 					</td>

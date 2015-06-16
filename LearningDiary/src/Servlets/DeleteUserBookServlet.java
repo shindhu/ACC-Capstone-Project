@@ -33,6 +33,7 @@ public class DeleteUserBookServlet extends HttpServlet {
     	boolean updateSucceeded = false;
     	
     	int id = new Integer(request.getParameter("id"));
+    	int user_id = new Integer(request.getParameter("user_id"));
     	
     	try {
     		updateSucceeded = new UserBooksManager(ds).deleteUserBookWithID(id);
@@ -43,13 +44,10 @@ public class DeleteUserBookServlet extends HttpServlet {
     	
     	if(updateSucceeded != true) {
     		request.setAttribute("error", "Delete of databse record failed");
-    		url = "WEB-INF/userBooks";
-    		
-    		getServletContext().getRequestDispatcher(url).forward(request, response);
-    		
+    		response.sendRedirect("/LearningDiary/userBooks?user_id=" + user_id);
+
     	} else {
-    	
-    	response.sendRedirect(url);
+    		response.sendRedirect("/LearningDiary/userBooks?user_id=" + user_id);
     	}
     	
 	}

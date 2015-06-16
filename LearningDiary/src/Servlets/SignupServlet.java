@@ -22,23 +22,19 @@ public class SignupServlet extends HttpServlet {
 	@Resource(name = "jdbc/MyDB")
 	DataSource ds;
 
-	
 	public SignupServlet() {
 		super();
 		
 	}
-
 	
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
 		String url = "/WEB-INF/signup.jsp";
 
-		getServletContext().getRequestDispatcher(url)
-				.forward(request, response);
+		getServletContext().getRequestDispatcher(url).forward(request, response);
 	}
 
-	
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
@@ -65,7 +61,6 @@ public class SignupServlet extends HttpServlet {
 				if (um.addUser(newUser)) {
 
 					request.getSession().setAttribute("isLoggedIn", true);
-					// request.getSession().setAttribute("id", id);
 					request.getSession().setAttribute("username", username);
 					request.getSession().setAttribute("email", email);
 
@@ -73,7 +68,6 @@ public class SignupServlet extends HttpServlet {
 					request.setAttribute("capName",
 							newUser.getCapitalizedUsername());
 					request.setAttribute("email", email);
-					// response.sendRedirect("/WEB-INF/main.jsp");
 					getServletContext().getRequestDispatcher(
 							"/WEB-INF/main.jsp").forward(request, response);
 				} else {

@@ -48,7 +48,7 @@ public class UserBooksServlet extends HttpServlet {
 		if(loggedInBoolean != null) {
 			boolean loggedIn = loggedInBoolean.booleanValue();
 			if(loggedIn) {
-				int id = new Integer(request.getParameter("id"));
+				int id = new Integer(request.getParameter("user_id"));
 				try {
 					userBooksWithUserID = ubm.getUserBooksByUserID(id);
 					

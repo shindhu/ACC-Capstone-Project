@@ -53,7 +53,7 @@
 					</form>
 					
 					<ul class="nav navbar-nav navbar-right" style="font-size: small;">
-						<li> <a>Logged in as ${capName }</a></li>
+						<li> <a>Logged in as ${capName }, id: ${user_id }</a></li>
 						<li><a href="/LearningDiary/logout" style="color: red;">
 						<span class="glyphicon glyphicon-log-out"></span> Log Out </a></li>
 					</ul>

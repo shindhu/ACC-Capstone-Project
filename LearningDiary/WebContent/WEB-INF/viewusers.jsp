@@ -27,7 +27,7 @@
 				<td style="text-align: left">${theUser.username}</td>
 				<td style="text-align: left">
 					<a href="mailto:mp.shindhu@gmail.com.com?Subject=Hello%20again" target="_top">${theUser.email }</a></td>
-				<td><a class="btn btn-info btn-md" href="userBooks?id=${theUser.id }">Books</a></td>
+				<td><a class="btn btn-info btn-md" href="userBooks?user_id=${theUser.id }">Books</a></td>
 				
 			</tr>
 		</c:forEach> 

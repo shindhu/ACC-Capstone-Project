@@ -34,16 +34,12 @@ public class LoginServlet extends HttpServlet {
 		
 		if(action == null) {
 			url = "/WEB-INF/login.jsp";
-			
 		}
 	
 		if(("login").equalsIgnoreCase(action)) {
 			
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			
-		//	boolean isDBerror = false;
-			
 			Users theFoundUser = null;
 			try {
 				theFoundUser = new UsersManager(ds).findUserWithNameAndPassword(username, password);
@@ -62,7 +58,9 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("isLoggedIn", true);
 				session.setAttribute("capName", theFoundUser.getCapitalizedUsername());
-				request.setAttribute("id", theFoundUser.getId());
+				session.setAttribute("user_id", theFoundUser.getId());
+				
+				/*request.setAttribute("user_id", theFoundUser.getId());*/
 				request.setAttribute("email", theFoundUser.getEmail());
 				
 				url = "/WEB-INF/viewcategory.jsp";
@@ -73,7 +71,6 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("error", "The username or password was incorrect! ");
 				url = "/WEB-INF/login.jsp";
 			}
-			
 		}
 		
 		getServletContext().getRequestDispatcher(url).forward(request, response);
