@@ -12,7 +12,7 @@
 	<div id="outerbody">
 		<h3 style="text-align: left;color:blue;">Login</h3>
 		<p style="color:red">${error }</p>
-		<form  action="LoginServlet" method="post">
+		<form  action="LoginServlet" method="get">
 			
 			<input type="hidden" name="action" value="login">
 			<div class="form-group">
@@ -25,19 +25,10 @@
 			</div>
 			<div class="form-group">
 				<label>&nbsp;</label> <input class="btn btn-primary active"
-					type="submit" value="login" id="submit">
+					type="submit" value="Login" id="submit">
 			</div>
 		</form>
 		
-		<from action="SignupServlet" method="get">
-			<div class="form-group">
-				<label>&nbsp;</label> <input class="btn btn-primary active"
-					type="submit" value="Create an account" id="submit">
-			</div>
-
-		</form>
-		
-		<button value="Create an account"> <a href="/LearningDiary/signup" style="color:red;"></a></button>
 		<p style="font-style: italic;">If You haven't register before <a href="/LearningDiary/signup" style="color:red;">click here</a></p>
 		
 	</div>

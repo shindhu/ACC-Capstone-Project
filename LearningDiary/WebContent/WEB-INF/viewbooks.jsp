@@ -12,15 +12,7 @@
 	<div class="table-responsive" id="outerbody_table">
 		<a href="/LearningDiary/category" style="color: blue; font-style: italic;">Back to Category</a>
 		<a class="btn btn-lg" href="/LearningDiary/addBook" style="color:blue; font-weight: bold;">Add Book</a>
-		<!-- its optional to have the select books by id and name
-		<form action="/LearningDiary/books" method="get">
-			<select name="order">
-				<option value="id">Order By ID</option>
-				<option value="name">Order By Name</option>
-			</select>
-			<input type="submit" value="submit ">
-		</form> -->
-		<!-- style="position: fixed; background-color: grey;" -->
+		
 		<table class="table table-hover">
 			<tr style="text-align: justify; ">
 				
@@ -49,15 +41,29 @@
 							<input class="btn btn-danger btn-sm" type="submit" value="Delete" id="submit">
 						</form>
 					</td>
-
+				
 				</tr>
 			</c:forEach>
-
 		</table>
+		<a href="/LearningDiary/category" style="color: blue; font-style: italic;">Back to Category</a>
+		
 	</div>
 	
+		
 	<div>
 	<%@ include file="/WEB-INF/footer.jsp" %>
 	</div>
 	</body>
 </html>
+
+
+
+<!-- its optional to have the select books by id and name
+		<form action="/LearningDiary/books" method="get">
+			<select name="order">
+				<option value="id">Order By ID</option>
+				<option value="name">Order By Name</option>
+			</select>
+			<input type="submit" value="submit ">
+		</form> -->
+		<!-- style="position: fixed; background-color: grey;" -->

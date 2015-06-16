@@ -207,4 +207,18 @@ public class CategoryManager {
 		
 	}
 	
+	public Category getCategoryNameByID(int theID) throws SQLException {
+		
+		Category categoryName = null;
+		Connection connection = null;
+		try {
+			connection = ds.getConnection();
+			PreparedStatement ps = connection.prepareStatement("select name from category where id = ?");
+			ps.setInt(1, theID);
+			
+		}
+		
+		return categoryName;
+		
+	}
 }

@@ -31,8 +31,7 @@ public class BooksManager {
 		try {
 
 			connection = ds.getConnection();
-			PreparedStatement ps = connection
-					.prepareStatement("select id, category_id, image, name, book_format, notes from books");
+			PreparedStatement ps = connection.prepareStatement("select id, category_id, image, name, book_format, notes from books");
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {
@@ -56,7 +55,7 @@ public class BooksManager {
 		return theBooks;
 	}
 	
-	// get books order by id
+	// get books order by id where id=1,2,3,4,.......
 	public ArrayList<Books> getBooksOrderByID() throws SQLException {
 		ArrayList<Books> theBooksOrderByID = new ArrayList<>();
 		Connection connection = null;
@@ -122,7 +121,7 @@ public class BooksManager {
 		return theBooksOrderByName;
 	}
 	
-	
+	// find books by keyword
 	public List<Books> getBooksByKeyword( String theName, String theNotes) throws IOException, SQLException {
 		
 		List<Books> theFilteredBooks = new ArrayList<Books>();
@@ -156,7 +155,7 @@ public class BooksManager {
 		return theFilteredBooks;
 	}
 
-	// get books using id of it 
+	// get books using book_id
 	public Books getBookWithBookID (int theID) throws SQLException {
 		
 		Books bookByBookID = null;
@@ -193,6 +192,7 @@ public class BooksManager {
 		
 	}
 	
+	// get books with category_id
 	public ArrayList<Books> getBookByID(int theID) throws SqlException, DBErrorException
 	{
 		ArrayList<Books> booksByID = new ArrayList<>();

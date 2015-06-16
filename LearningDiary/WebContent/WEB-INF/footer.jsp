@@ -8,7 +8,7 @@
 
 #footer {
 	text-align:center;
-	/* padding-bottom: 200px; */
+	padding-bottom: 10px;
 }
 
 </style>
@@ -26,10 +26,6 @@
 		document.getElementById("demo").innerHTML = Date();
 	</script>
 			 
-
-	
-	
-
 </body>
 </html>
 

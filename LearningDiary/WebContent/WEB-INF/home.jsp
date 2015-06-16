@@ -16,5 +16,9 @@
 		welcome to the home page.
 	</div>
 	
+	<div>
+	<%@ include file="/WEB-INF/footer.jsp" %>
+	</div>
+	
 </body>
 </html>

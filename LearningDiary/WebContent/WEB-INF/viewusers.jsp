@@ -14,20 +14,21 @@
 	<div class="table-responsive" id="outerbody"  >
 	<table class="table table-hover" style="width:40%">
 		<tr>
-			 <th style="width:15%">ID</th> 
+			 <th style="width:10%">ID</th> 
 			<th style="width:10%; text-align: left">Users</th>
 			<th style="width:15%">Email</th>
-			<th style="width: 10%">Delete</th>
-			<!-- <th>Edit/Del</th> -->
+			<th style="width: 10%">Books</th>
+			
 		</tr>
 		
 		 <c:forEach items="${user }" var="theUser">
 			<tr>	
 				<td>${theUser.id }</td>
 				<td style="text-align: left">${theUser.username}</td>
-				<td style="text-align: left">${theUser.email }</td>
-				<td><a class="btn btn-danger btn-md"
-						href="?id=${theUser.id }"> Delete </a></td>
+				<td style="text-align: left">
+					<a href="mailto:mp.shindhu@gmail.com.com?Subject=Hello%20again" target="_top">${theUser.email }</a></td>
+				<td><a class="btn btn-info btn-md" href="userBooks?id=${theUser.id }">Books</a></td>
+				
 			</tr>
 		</c:forEach> 
 	</table>

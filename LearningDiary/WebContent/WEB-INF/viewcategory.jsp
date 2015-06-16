@@ -9,11 +9,12 @@
 
 	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 
-	<div class="table-responsive" id="outerbody_table">
+	<div class="table-responsive" id="outerbody">
 
+	<p style="color: red">${error_delete }</p>
+		
 		<a class="btn btn-lg" href="/LearningDiary/addCategory"
 			style="color: blue; font-weight: bold;">Add Category</a>
-		<p style="color: red">${error_delete }</p>
 		<table class="table table-hover" style="width: 40%">
 			<tr>
 				<th style="width: 10%">ID</th>

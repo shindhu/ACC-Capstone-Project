@@ -1,21 +1,3 @@
--- LearningDiary Users
-DROP TABLE USERS;
-SET SCHEMA APP;
-
-CREATE TABLE USERS (ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-					USERNAME VARCHAR(50) NOT NULL UNIQUE,
-					PASSWORD VARCHAR(20) NOT NULL,
-					EMAIL VARCHAR (50) NOT NULL);
-
-INSERT INTO USERS (USERNAME, PASSWORD, EMAIL) VALUES ('admin','admin','admin@learningdiary.com');
-INSERT INTO USERS (USERNAME, PASSWORD, EMAIL) VALUES ('shindhu','abc','shindhu@learningdiary.com');
-INSERT INTO USERS (USERNAME, PASSWORD, EMAIL) VALUES ('john','abc','john@learningdiary.com');
-INSERT INTO USERS (USERNAME, PASSWORD, EMAIL) VALUES ('sam','abc','sam@learningdiary.com');
-INSERT INTO USERS (USERNAME, PASSWORD, EMAIL) VALUES ('norman','abc','norman@learningdiary.com');
-INSERT INTO USERS (USERNAME, PASSWORD, EMAIL) VALUES ('marc','abc','marc@learningdiary.com');
-
-SELECT * FROM USERS;
-
 
 -- Table Category
 DROP TABLE CATEGORY;
@@ -120,6 +102,12 @@ INSERT INTO BOOKS(CATEGORY_ID, IMAGE, NAME, BOOK_FORMAT, NOTES) VALUES(6,'http:/
 
 
 select * from books;
+
+select category.name
+from category
+where  id = 5;
+
+
 
 -- get books by book id
 select * from books where id=4;

@@ -15,7 +15,6 @@ import javax.sql.DataSource;
 import Domain.Users;
 import Managers.UsersManager;
 
-
 @WebServlet({ "/LoginServlet", "/login" })
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -27,15 +26,6 @@ public class LoginServlet extends HttpServlet {
         super();
         
     }
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//String url = "/index.jsp";
-		
-		//getServletContext().getRequestDispatcher(url).forward(request, response);
-		doGet(request, response);
-		
-	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

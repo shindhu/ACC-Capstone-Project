@@ -13,7 +13,7 @@
 	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 	
 	<div id="outerbody">
-		LearningDiary is cool.
+		project proposal
 	</div>
 	
 	<div>
