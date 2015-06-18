@@ -16,7 +16,6 @@ import javax.sql.DataSource;
 import Domain.Category;
 import Managers.CategoryManager;
 
-
 @WebServlet({ "/CategoryServlet", "/category" })
 public class CategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -41,7 +40,7 @@ public class CategoryServlet extends HttpServlet {
 		if( loggedInBoolean != null) {
 			boolean loggedIn = loggedInBoolean.booleanValue();
 			if (loggedIn) {
-				
+			
 				try {
 					
 					theCategory = cm.getCategoryTotals();

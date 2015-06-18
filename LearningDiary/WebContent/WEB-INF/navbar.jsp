@@ -36,13 +36,13 @@
 
 					</ul>
 				</c:if> 
-				<c:if test="${isLoggedIn == true }">
+				<c:if test="${isLoggedIn == true}">
 					<ul class="nav navbar-nav navbar-left" style="font-size: small;">
 						
 						<li><a href="/LearningDiary/category" style="color: black;">Category</a></li>
 						<li><a href="/LearningDiary/books" style="color: black;">Books</a></li>
 						<li><a href="/LearningDiary/users" style="color: black;">Users</a></li>
-						<li><a href="/LearningDiary/userBooks" style="color: black">UserBooks</a></li>
+						<li><a href="/LearningDiary/userBooks" style="color: black">${capName }Books</a></li>
 
 					</ul>
 					<form action = "/LearningDiary/booksByKeyword" class="navbar-form navbar-left" name="search" action="get">

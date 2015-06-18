@@ -58,7 +58,7 @@
 			
 			<div class="from-group">	
 				<label>Notes</label>
-				<textarea class="form-control" rows="10"  name="notes" value="${book.notes }" placeholder="Your Notes"></textarea><br>
+				<textarea class="form-control" style="width:1000px" rows="10"  name="notes" value="${book.notes }" placeholder="Your Notes"></textarea><br>
 			</div>
 			
 			<label>&nbsp; </label>

@@ -10,6 +10,7 @@
 	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 	<div class="table-responsive" id="outerbody_table" >
 	
+	<a class="btn btn-lg" href="/LearningDiary/addUserBook" style="color:blue; font-weight: bold;">Add Book</a>
 	<table class="table table-bordered">
 		<tr>
 			<th>ID</th>
@@ -17,6 +18,7 @@
 			<th>Name</th>
 			<th>Book_Format</th>
 			<th>Notes</th>
+			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
 		
@@ -28,6 +30,7 @@
 				<td>${theUserBook.name }</td>
 				<td>${theUserBook.book_format }</td>
 				<td style="text-align: justify;">${theUserBook.notes }</td>
+				<td><a class="btn btn-warning btn-md" href="editUserBook?id=${theUserBook.id }"> Edit </a></td>
 				<td>
 						<form action="deleteUserBook" method="post">
 							<input type="hidden" name="id" value="${theUserBook.id }">
@@ -35,7 +38,6 @@
 							<input class="btn btn-danger btn-sm" type="submit" value="Delete" id="submit">
 						</form>
 					</td>
-				
 			</tr>
 		</c:forEach> 
 			

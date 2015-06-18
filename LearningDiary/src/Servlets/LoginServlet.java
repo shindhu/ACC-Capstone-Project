@@ -38,6 +38,7 @@ public class LoginServlet extends HttpServlet {
 	
 		if(("login").equalsIgnoreCase(action)) {
 			
+			
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			Users theFoundUser = null;
@@ -63,8 +64,8 @@ public class LoginServlet extends HttpServlet {
 				/*request.setAttribute("user_id", theFoundUser.getId());*/
 				request.setAttribute("email", theFoundUser.getEmail());
 				
-				url = "/WEB-INF/viewcategory.jsp";
-				response.sendRedirect("/LearningDiary/category");
+				url = "/WEB-INF/userbooks.jsp";
+				response.sendRedirect("/LearningDiary/userBooks?user_id="+theFoundUser.getId());
 				return;
 			
 			} else {

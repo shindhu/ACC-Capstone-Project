@@ -4,8 +4,8 @@
 <head>
 <title>LearningDiary Books</title>
 <%@ include file="/WEB-INF/common-css-javascript.html"%>
-
 </head>
+
 <body id="body_layout">
 	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 
@@ -41,14 +41,11 @@
 							<input class="btn btn-danger btn-sm" type="submit" value="Delete" id="submit">
 						</form>
 					</td>
-				
 				</tr>
 			</c:forEach>
 		</table>
 		<a href="/LearningDiary/category" style="color: blue; font-style: italic;">Back to Category</a>
-		
 	</div>
-	
 		
 	<div>
 	<%@ include file="/WEB-INF/footer.jsp" %>
