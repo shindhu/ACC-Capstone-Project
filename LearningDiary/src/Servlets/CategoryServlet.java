@@ -19,51 +19,51 @@ import Managers.CategoryManager;
 @WebServlet({ "/CategoryServlet", "/category" })
 public class CategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	@Resource(name="jdbc/MyDB")
-	DataSource ds;
-	
-    public CategoryServlet() {
-        super();
-        
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String url = "/WEB-INF/viewcategory.jsp";
-		CategoryManager cm = new CategoryManager(ds);
-		List<Category> theCategory = null;
-		
-		HttpSession session = request.getSession();
+	@Resource(name = "jdbc/MyDB")
+	DataSource ds;
+
+	public CategoryServlet() {
+		super();
+
+	}
+
+	boolean loggedIn(HttpSession session) {
 		Boolean loggedInBoolean = (Boolean) session.getAttribute("isLoggedIn");
-		
-		if( loggedInBoolean != null) {
-			boolean loggedIn = loggedInBoolean.booleanValue();
-			if (loggedIn) {
-			
-				try {
-					
-					theCategory = cm.getCategoryTotals();
-					System.out.println(theCategory);
-					
-				} catch (SQLException e) {
-				
-					e.printStackTrace();
-					getServletContext().getRequestDispatcher(url).forward(request, response);
-					
-				}
-				
-			}
+
+		if (loggedInBoolean != null) {
+			return loggedInBoolean.booleanValue();
+		} else {
+			return false;
 		}
-		
-		if(theCategory != null) {
-			request.setAttribute("categoryList", theCategory);
-			url = "/WEB-INF/viewcategory.jsp";
+	}
+
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+		if (loggedIn(session)) {
+			request.setAttribute("categoryList", categoryTotals(session));
+			request.getRequestDispatcher("/WEB-INF/viewcategory.jsp").forward(request,response);
+		} else {
+			response.sendRedirect("/LearningDiary/login");			
+		}	
+	}
+
+	private List<Category> categoryTotals(HttpSession session)
+			throws ServletException, IOException 
+	{
+		int user_id = (Integer) session.getAttribute("user_id");
+		try {
+			CategoryManager cm = new CategoryManager(ds);
+
+			return  cm.getCategoryTotals(user_id);			
+		} catch (SQLException e) {
+			e.printStackTrace();
+            // maybe go to error page
+			return null;
 		}
-		
-		getServletContext().getRequestDispatcher(url).forward(request, response);
-		
-		
+
 	}
 
 }

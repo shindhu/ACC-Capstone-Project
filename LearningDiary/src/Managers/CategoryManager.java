@@ -19,15 +19,15 @@ public class CategoryManager {
 		this.ds = ds;
 	}
 
-	public ArrayList<Category> getCategory() throws SQLException {
+	public ArrayList<Category> getCategory(int theUserID) throws SQLException {
 		ArrayList<Category> theCategory = new ArrayList<Category>();
 		Connection connection = null;
 
 		try {
 
 			connection = ds.getConnection();
-			PreparedStatement ps = connection
-					.prepareStatement("select id, name from category");
+			PreparedStatement ps = connection.prepareStatement("select id, name from category where user_id=?");
+			ps.setInt(1, theUserID);
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {
@@ -75,14 +75,15 @@ public class CategoryManager {
 	}
 	
 	
-	public List<Category> getCategoryTotals() throws SQLException
+	public List<Category> getCategoryTotals(int theUserID) throws SQLException
 	{
 		List<Category> bookCounts = new ArrayList<>();
 		
 		Connection connection = null;
 		try {
 			connection = ds.getConnection();
-			PreparedStatement ps = connection.prepareStatement("select category.id, category.name, count(books.category_id) as bookcounts from category left outer join books on category.id = books.category_id  group by category.id,category.name");
+			PreparedStatement ps = connection.prepareStatement("select category.id, category.name, count(books.id) as bookcounts from category left outer join books on category.id = books.category_id where category.user_id = ? group by category.id, category.name");
+			ps.setInt(1, theUserID);
 			ResultSet resultSet = ps.executeQuery();
 			
 			while(resultSet.next()) {
@@ -107,17 +108,17 @@ public class CategoryManager {
 		
 	}
 
-	public boolean addCategory(String name) throws SQLException
+	public boolean addCategory(int theUserID,String name) throws SQLException
 	{
 		boolean addedCategory = false;
 		Connection connection = null;
 		
 		try { 
 			connection = ds.getConnection();
-			String theQueryString = "INSERT INTO CATEGORY (NAME) values (?)";
-			
+			String theQueryString = "INSERT INTO CATEGORY (USER_ID, NAME) values (?,?)";
 			PreparedStatement ps = connection.prepareStatement(theQueryString);
-			ps.setString(1, name);
+			ps.setInt(1, theUserID);
+			ps.setString(2, name);
 			
 			int updatedCount = ps.executeUpdate();
 			if(updatedCount >= 1) {
@@ -207,7 +208,7 @@ public class CategoryManager {
 		
 	}
 	
-	public Category getCategoryNameByID(int theID) throws SQLException {
+/*	public Category getCategoryNameByID(int theID) throws SQLException {
 		
 		Category categoryName = null;
 		Connection connection = null;
@@ -220,5 +221,7 @@ public class CategoryManager {
 		
 		return categoryName;
 		
-	}
+	}*/
+	
+	
 }

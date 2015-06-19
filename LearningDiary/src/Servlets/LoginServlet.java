@@ -64,8 +64,8 @@ public class LoginServlet extends HttpServlet {
 				/*request.setAttribute("user_id", theFoundUser.getId());*/
 				request.setAttribute("email", theFoundUser.getEmail());
 				
-				url = "/WEB-INF/userbooks.jsp";
-				response.sendRedirect("/LearningDiary/userBooks?user_id="+theFoundUser.getId());
+				url = "/WEB-INF/category.jsp";
+				response.sendRedirect("/LearningDiary/category?user_id="+theFoundUser.getId());
 				return;
 			
 			} else {

@@ -10,9 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.apache.derby.client.am.SqlException;
+
+import com.sun.xml.internal.ws.resources.HttpserverMessages;
 
 import Domain.Books;
 import Domain.Category;
@@ -36,8 +39,11 @@ public class AddBookServlet extends HttpServlet {
 		
 		ArrayList<Category> categoryList = new ArrayList<>();
 		CategoryManager cm = new CategoryManager(ds);
+		HttpSession session = request.getSession();
+		int user_id = (Integer) session.getAttribute("user_id");
 		try {
-			categoryList = cm.getCategory();
+			
+			categoryList = cm.getCategory(user_id);
 			request.setAttribute("categories", categoryList);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -50,7 +56,9 @@ public class AddBookServlet extends HttpServlet {
 		
 		String url = request.getContextPath() + "/books";
 		boolean addedBook = false;
+		HttpSession session = request.getSession();
 		
+		int user_id = (Integer) session.getAttribute("user_id");
 		int category_id = new Integer( request.getParameter("category_id"));
 		String image = request.getParameter("image");
 		String name = request.getParameter("name");
@@ -58,7 +66,7 @@ public class AddBookServlet extends HttpServlet {
 		String notes = request.getParameter("notes");
 		
 		try {
-			addedBook = new BooksManager(ds).addBook(category_id, image, name, book_format, notes);
+			addedBook = new BooksManager(ds).addBook(user_id, category_id, image, name, book_format, notes);
 		} catch(SqlException e) {
 			e.printStackTrace();
 		}

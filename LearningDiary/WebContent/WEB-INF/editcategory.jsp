@@ -10,6 +10,7 @@
 	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 	
 	<div id="outerbody"> 
+	<a href="/LearningDiary/category" style="color: blue; font-style: italic;">Back to Category</a>
 	<h2 style="text-align: left;color:blue;">Edit Category</h2>
 	
 		<form  action="editCategory" method = "post">

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import Managers.CategoryManager;
@@ -33,11 +34,12 @@ public class AddCategoryServlet extends HttpServlet {
 
 		String url = request.getContextPath() + "/category";
 		boolean addedCategory = false;
-		
+		HttpSession session = request.getSession();
+		int user_id = (Integer) session.getAttribute("user_id");
 		String name = request.getParameter("name");
 		
 		try {
-			addedCategory = new CategoryManager(ds).addCategory(name);
+			addedCategory = new CategoryManager(ds).addCategory(user_id, name);
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -45,9 +47,9 @@ public class AddCategoryServlet extends HttpServlet {
 		
 		if (addedCategory != true) {
 			request.setAttribute("error", "database failed to add the category");
-			url = "WEB-INF/addCategory";
+			url = "/category?user_id="+user_id;
 			request.setAttribute("name", name);
-			
+			request.setAttribute("user_id", user_id);
 			getServletContext().getRequestDispatcher(url).forward(request, response);
 			return;
 			

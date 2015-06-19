@@ -24,14 +24,16 @@ public class BooksManager {
 		this.ds = ds;
 	}
 
-	public ArrayList<Books> getBooks() throws SQLException {
+	public ArrayList<Books> getBooks(int theUserID) throws SQLException {
 		ArrayList<Books> theBooks = new ArrayList<>();
 		Connection connection = null;
 
 		try {
 
 			connection = ds.getConnection();
-			PreparedStatement ps = connection.prepareStatement("select id, category_id, image, name, book_format, notes from books");
+			PreparedStatement ps = connection.prepareStatement("select id, category_id, image, name, book_format, notes from books where user_id=?");
+			ps.setInt(1, theUserID);
+			
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {
@@ -230,7 +232,7 @@ public class BooksManager {
 	}
 	
 	// add book in the database
-	public boolean addBook(int category_id, String image,String name, String book_format, String notes) throws SqlException {
+	public boolean addBook(int user_id, int category_id, String image,String name, String book_format, String notes) throws SqlException {
 		
 		boolean addedBook = false;
 		Connection connection = null;
@@ -238,14 +240,15 @@ public class BooksManager {
 		try {
 			connection = ds.getConnection();
 			
-			String theQueryString = "INSERT INTO BOOKS(CATEGORY_ID, IMAGE, NAME, BOOK_FORMAT, NOTES) VALUES(?,?,?,?,?)";
+			String theQueryString = "INSERT INTO BOOKS(USER_ID, CATEGORY_ID, IMAGE, NAME, BOOK_FORMAT, NOTES) VALUES(?,?,?,?,?,?)";
 			
 			PreparedStatement ps = connection.prepareStatement(theQueryString);
-			ps.setInt(1, category_id);
-			ps.setString(2, image);
-			ps.setString(3, name);
-			ps.setString(4, book_format);
-			ps.setString(5, notes);
+			ps.setInt(1, user_id);
+			ps.setInt(2, category_id);
+			ps.setString(3, image);
+			ps.setString(4, name);
+			ps.setString(5, book_format);
+			ps.setString(6, notes);
 			
 			int theUpdatedCount = ps.executeUpdate();
 			if (theUpdatedCount >= 1) {
@@ -279,15 +282,16 @@ public class BooksManager {
 		try {
 			connection = ds.getConnection();
 			
-			String theQueryString = "update books set category_id=?,  image=?, name=?, book_format=?, notes=? where id=?";
+			String theQueryString = "update books set user_id=?, category_id=?,  image=?, name=?, book_format=?, notes=? where id=?";
 			
 			PreparedStatement ps = connection.prepareStatement(theQueryString);
-			ps.setInt(1, b.getCategory_id());
-			ps.setString(2, b.getImage());
-			ps.setString(3, b.getName());
-			ps.setString(4, b.getBook_format());
-			ps.setString(5, b.getNotes());
-			ps.setInt(6, b.getId());
+			ps.setInt(1, b.getUser_id());
+			ps.setInt(2, b.getCategory_id());
+			ps.setString(3, b.getImage());
+			ps.setString(4, b.getName());
+			ps.setString(5, b.getBook_format());
+			ps.setString(6, b.getNotes());
+			ps.setInt(7, b.getId());
 			
 			int updatedCount = ps.executeUpdate();
 			if(updatedCount >= 1) {

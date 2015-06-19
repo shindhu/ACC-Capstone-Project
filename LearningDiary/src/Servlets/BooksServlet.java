@@ -41,6 +41,7 @@ public class BooksServlet extends HttpServlet {
 		if(loggedInBoolean != null) {
 			boolean loggedIn = loggedInBoolean.booleanValue();
 			if(loggedIn) {
+				int user_id = (Integer) session.getAttribute("user_id");
 				try {
 					
 					booksByOrder = request.getParameter("order");
@@ -48,7 +49,7 @@ public class BooksServlet extends HttpServlet {
 					{
 						theBooks = bm.getBooksOrderByName();
 					} else {
-						theBooks = bm.getBooks();
+						theBooks = bm.getBooks(user_id);
 					}
 					System.out.println(theBooks);
 				} catch (SQLException e) {

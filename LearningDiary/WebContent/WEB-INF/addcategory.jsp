@@ -10,9 +10,10 @@
 	<c:import url="/WEB-INF/navbar.jsp"></c:import>
 	
 	<div id="outerbody"> <!-- class="col-md-offset-1 col-md-8" -->
+	<a href="/LearningDiary/category" style="color: blue; font-style: italic;">Back to Category</a>
 	<h2 style="text-align: left;color:blue;">Add Category</h2>
 	
-		<form  action="addCategory" method = "post">
+		<form  action="addCategory?user_id" method = "post">
 			<input type="hidden" name="action" value="add-category">
 			
 			<div class="form-group">
@@ -26,7 +27,7 @@
 		</form>
 	</div>
 
-<div>
+	<div>
 	<%@ include file="/WEB-INF/footer.jsp" %>
 	</div>
 

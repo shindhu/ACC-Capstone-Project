@@ -7,9 +7,10 @@ CREATE TABLE USERS (ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH
 INSERT INTO USERS (USERNAME, PASSWORD, EMAIL) VALUES ('admin','admin','admin@learningdiary.com'); --1
 INSERT INTO USERS (USERNAME, PASSWORD, EMAIL) VALUES ('shindhu','abc','shindhu@learningdiary.com'); --2
 INSERT INTO USERS (USERNAME, PASSWORD, EMAIL) VALUES ('john','abc','john@learningdiary.com'); --3
-INSERT INTO USERS (USERNAME, PASSWORD, EMAIL) VALUES ('sam','abc','sam@learningdiary.com'); --4
-INSERT INTO USERS (USERNAME, PASSWORD, EMAIL) VALUES ('norman','abc','norman@learningdiary.com'); --5
-INSERT INTO USERS (USERNAME, PASSWORD, EMAIL) VALUES ('marc','abc','marc@learningdiary.com'); --6
+
+--INSERT INTO USERS (USERNAME, PASSWORD, EMAIL) VALUES ('sam','abc','sam@learningdiary.com'); --4
+--INSERT INTO USERS (USERNAME, PASSWORD, EMAIL) VALUES ('norman','abc','norman@learningdiary.com'); --5
+--INSERT INTO USERS (USERNAME, PASSWORD, EMAIL) VALUES ('marc','abc','marc@learningdiary.com'); --6
 SELECT * FROM USERS;
 
 DROP TABLE CATEGORY;
@@ -20,12 +21,15 @@ CREATE TABLE CATEGORY ( ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START 
 	PRIMARY KEY(ID));
 INSERT INTO CATEGORY (USER_ID, NAME) values (2,'Autobiography & Biography');-- 1
 INSERT INTO CATEGORY (USER_ID, NAME) values (2,'Business & Money');--2
-INSERT INTO CATEGORY (USER_ID, NAME) values (3,'Computer & Programming');--3
-INSERT INTO CATEGORY (USER_ID, NAME) values (4,'Reference');--4
-INSERT INTO CATEGORY (USER_ID, NAME) values (5,'Stories');--5
-INSERT INTO CATEGORY (USER_ID, NAME) VALUES (6,'Other');--6
-INSERT INTO CATEGORY (USER_ID, NAME) VALUES (2, 'Empty_category'); --7
+INSERT INTO CATEGORY (USER_ID, NAME) values (2,'Computer & Programming');--3
+INSERT INTO CATEGORY (USER_ID, NAME) values (3,'Reference');--4
+INSERT INTO CATEGORY (USER_ID, NAME) values (3,'Stories');--5
+INSERT INTO CATEGORY (USER_ID, NAME) VALUES (3,'Other');--6
+
 SELECT * FROM CATEGORY;
+
+select id, name from category where user_id = 3;
+
 
 DROP TABLE BOOKS;
 SET SCHEMA APP;
@@ -52,6 +56,8 @@ SELECT * FROM BOOKS;
 
 SELECT * FROM BOOKS
 WHERE USER_ID = 2;
+
+
 
 select category.id, category.name, count(books.category_id) as bookcounts
 from category left outer join books on category.id = books.category_id 

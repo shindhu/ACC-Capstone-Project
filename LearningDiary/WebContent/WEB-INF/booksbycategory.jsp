@@ -24,6 +24,9 @@
 			<th>Name</th>
 			<th>Book_Format</th>
 			<th>Notes</th>
+			<th>Edit</th>
+			<th>Delete</th>
+			
 		</tr>
 		
 		<%--<c:out value="${theBooksByCategory }"> </c:out> --%>
@@ -34,6 +37,14 @@
 				<td>${book.name }</td>
 				<td>${book.book_format }</td>
 				<td style="text-align: justify;">${book.notes }</td>
+				<td style="width:100px">
+						<a class="btn btn-warning btn-md" href="editBook?id=${book.id }"> Edit </a></td>
+					<td>
+						<form action="deleteBook" method="post">
+							<input type="hidden" name="id" value="${book.id }">
+							<input class="btn btn-danger btn-sm" type="submit" value="Delete" id="submit">
+						</form>
+					</td>
 			</tr>
 		</c:forEach> 
 			

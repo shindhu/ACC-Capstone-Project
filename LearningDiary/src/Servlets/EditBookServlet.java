@@ -42,10 +42,12 @@ public class EditBookServlet extends HttpServlet {
 		ArrayList<Category> categoryList = new ArrayList<>();
 		CategoryManager cm = new CategoryManager(ds);
 		
+		HttpSession session = request.getSession();
+		int user_id = (Integer) session.getAttribute("user_id");
 		try {
 			bookToEdit =  bm.getBookWithBookID(id);
 			System.out.println(bookToEdit.getClass());
-			categoryList = cm.getCategory();
+			categoryList = cm.getCategory(user_id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			url = "/WEB-INF/dberror.jsp";

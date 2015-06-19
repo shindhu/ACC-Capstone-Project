@@ -65,14 +65,11 @@ public class SignupServlet extends HttpServlet {
 					request.getSession().setAttribute("email", email);
 
 					request.setAttribute("id", newUser.getId());
-					request.setAttribute("capName",
-							newUser.getCapitalizedUsername());
+					request.setAttribute("capName", newUser.getCapitalizedUsername());
 					request.setAttribute("email", email);
-					getServletContext().getRequestDispatcher(
-							"/WEB-INF/main.jsp").forward(request, response);
+					getServletContext().getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
 				} else {
-					request.setAttribute("error_username",
-							"sorry already have the same username. Try different name.");
+					request.setAttribute("error_username","sorry already have the same username. Try different name.");
 					getServletContext().getRequestDispatcher(url).forward(request, response);
 					return;
 				}

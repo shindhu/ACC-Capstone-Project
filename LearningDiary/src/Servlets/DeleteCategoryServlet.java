@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import javax.websocket.SendResult;
 
@@ -37,10 +38,12 @@ public class DeleteCategoryServlet extends HttpServlet {
 		List<Domain.Category> theCategory  = null;
     	CategoryManager cm  = new CategoryManager(ds);
     	int id = new Integer(request.getParameter("id"));
+    	HttpSession session = request.getSession();
+    	int user_id = (Integer) session.getAttribute("user_id");
     	
     	try {
     			updateSucceeded = new CategoryManager(ds).deleteCategoryWithID(id);
-    			theCategory = cm.getCategoryTotals(); 
+    			theCategory = cm.getCategoryTotals(user_id); 
         		
     		} catch(SQLException e) {
     		e.printStackTrace();

@@ -42,18 +42,16 @@
 						<li><a href="/LearningDiary/category" style="color: black;">Category</a></li>
 						<li><a href="/LearningDiary/books" style="color: black;">Books</a></li>
 						<li><a href="/LearningDiary/users" style="color: black;">Users</a></li>
-						<li><a href="/LearningDiary/userBooks" style="color: black">${capName }Books</a></li>
-
 					</ul>
-					<form action = "/LearningDiary/booksByKeyword" class="navbar-form navbar-left" name="search" action="get">
+					<!-- <form action = "/LearningDiary/booksByKeyword" class="navbar-form navbar-left" name="search" action="get">
 						<div class="form-group">
 							<input type="text" style="width: 500px"class="form-control" placeholder="Search">
 						</div>
 						<button type="submit" class="btn btn-default">search</button>
-					</form>
+					</form> -->
 					
 					<ul class="nav navbar-nav navbar-right" style="font-size: small;">
-						<li> <a>Logged in as ${capName }, id: ${user_id }</a></li>
+						<li> <a>Logged in as ${capName }, id: ${user_id } ${id }</a></li>
 						<li><a href="/LearningDiary/logout" style="color: red;">
 						<span class="glyphicon glyphicon-log-out"></span> Log Out </a></li>
 					</ul>
